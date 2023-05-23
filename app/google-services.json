@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "929447111087",
+    "project_id": "bilconnect-96cde",
+    "storage_bucket": "bilconnect-96cde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929447111087:android:29b9435ef6aa81a952a75a",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929447111087-1diiimv17r3o8q96tvprpafi8t1r752f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-i1H9AuzkpLRU0agd28wxh_0x7XWO1Tg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929447111087-1diiimv17r3o8q96tvprpafi8t1r752f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

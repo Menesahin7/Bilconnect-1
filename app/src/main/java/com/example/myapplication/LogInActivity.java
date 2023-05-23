@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LogInActivity extends AppCompatActivity {
 
     EditText editTextEmailLoginPage;
@@ -17,6 +19,7 @@ public class LogInActivity extends AppCompatActivity {
     TextView textViewForgotPassword;
     TextView textViewSignUp;
     Button btnLogin;
+    FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,10 +33,13 @@ public class LogInActivity extends AppCompatActivity {
         textViewSignUp = findViewById(R.id.textViewSignUp);
         btnLogin = findViewById(R.id.btnLogIn);
 
+        mAuth = FirebaseAuth.getInstance();
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this,MainActivity.class));
+                //startActivity(new Intent(LogInActivity.this,MainActivity.class));
+                loginUser();
             }
         });
 
@@ -50,6 +56,10 @@ public class LogInActivity extends AppCompatActivity {
                 startActivity(new Intent(LogInActivity.this,SignUpActivity.class));
             }
         });
+
+    }
+
+    private void loginUser() {
 
     }
 }
