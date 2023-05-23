@@ -5,10 +5,40 @@ import android.graphics.*;
 
 public class User {
 
-    public int id;   //unique user code, it contains 6 digit [0-9]
-    public String userName;         // username
-    public String password;         //password
-    public String mail;             //mail
+    protected int id;   //unique user code, it contains 6 digit [0-9]
+    protected String userName;         // username
+    protected String password;         //password
+    protected String mail;             //mail
 
 
+
+
+    protected void setId(int id) {
+        this.id = id;
+    }
+    protected void setUserName(String userName) {
+        this.userName = userName;
+    }
+    protected void setPassword(String password) {
+        this.password = password;
+    }
+    protected void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getMail() {
+        return mail;
+    }
 }

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
-
     EditText editTextTextPersonName;
     EditText editTextTextEmailAddress;
     EditText editTextTextPassword;
@@ -44,13 +43,6 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
             }
         });
-
-
-
-
-
-
-
 
     }
 }

@@ -16,6 +16,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
         Button forgetPassButton = findViewById(R.id.btnSendCode);
         EditText email = findViewById(R.id.EmailAddressForgetPass);
-        
+
     }
 }
