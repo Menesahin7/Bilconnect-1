@@ -17,5 +17,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         Button forgetPassButton = findViewById(R.id.btnSendCode);
         EditText email = findViewById(R.id.EmailAddressForgetPass);
 
+        forgetPassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ForgotPasswordActivity.this,verificationCode.class));
+            }
+        });
     }
 }
