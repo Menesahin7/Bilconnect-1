@@ -1,17 +1,32 @@
 package com.example.myapplication;
 
-import android.graphics.*;
-
-
 public class User {
 
     protected int id;   //unique user code, it contains 6 digit [0-9]
     protected String userName;         // username
     protected String password;         //password
     protected String mail;             //mail
+    protected double rating; // User's rating when creating user it is 0.
+    protected int count; // This is the number of rating that user get.
 
 
+    public User(int id, String name, String mail, String passW)
+    {
+        this.id = id;
+        this.userName = name;
+        this.mail = mail;
+        this.password = passW;
+        this.rating = 0;
+        this.count = 0;
+    }
 
+    public void evalRating(int num)
+    {
+        double sum = this.rating*count;
+        sum += num;
+        this.count++;
+        this.rating = sum / count;
+    }
 
     protected void setId(int id) {
         this.id = id;
@@ -42,3 +57,4 @@ public class User {
         return mail;
     }
 }
+

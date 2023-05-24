@@ -56,8 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-=======
     }
 
     private void createUser(){
@@ -99,6 +97,5 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             });
         }
->>>>>>> main
     }
 }
