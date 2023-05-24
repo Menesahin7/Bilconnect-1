@@ -33,10 +33,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         forgetPassButton.setOnClickListener(new View.OnClickListener() {
-            String email = et_email.getText().toString();
 
             @Override
             public void onClick(View view) {
+                String email = et_email.getText().toString();
                 if(TextUtils.isEmpty(email)) {
                     et_email.setError("Email cannot be empty.");
                     et_email.requestFocus();
