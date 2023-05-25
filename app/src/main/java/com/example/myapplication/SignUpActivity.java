@@ -105,6 +105,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                        new User(name,email,password);
+                        Toast.makeText(SignUpActivity.this,"Signed up successfully",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
+                    }
+                    else{
+                        Toast.makeText(SignUpActivity.this,"SignUp Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
