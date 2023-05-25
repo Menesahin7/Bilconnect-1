@@ -29,6 +29,7 @@
         android:layout_toRightOf="@+id/search_bar"/>
 
     <TextView
+        android:id="@+id/textViewLastCreatedEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Last Created Events"
@@ -37,6 +38,35 @@
         android:textSize="24sp"
         android:layout_below="@id/btnAddEvent"
         android:fontFamily="@font/helvetica"
+        />
+    <Button
+        android:id="@+id/btnEvaluation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Evaluation"
+        android:layout_marginLeft="8dp"
+
+        android:layout_below="@+id/textViewLastCreatedEvents"
+        />
+    <Button
+        android:id="@+id/btnProfileMainActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:layout_marginLeft="8dp"
+
+        android:layout_below="@+id/textViewLastCreatedEvents"
+        android:layout_toRightOf="@id/btnEvaluation"
+        />
+
+    <Button
+        android:id="@+id/btnEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="Edit Profile"
+        android:layout_below="@+id/textViewLastCreatedEvents"
+        android:layout_toRightOf="@id/btnProfileMainActivity"
         />
 
 </RelativeLayout>

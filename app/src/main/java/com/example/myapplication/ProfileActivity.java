@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class ProfileActivity extends AppCompatActivity {
     User user;
-    Button backButton;
+    FloatingActionButton backButton;
     Button lastAttended;
     EditText biography;
 
