@@ -32,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
+
         editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = findViewById(R.id.editTextTextPassword);
         editTextTextConfPassword = findViewById(R.id.editTextTextConfPassword);
@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void createUser(){
-        String name = editTextTextPersonName.getText().toString();
+
         String email = editTextTextEmailAddress.getText().toString();
         String password = editTextTextPassword.getText().toString();
         String confPassword = editTextTextConfPassword.getText().toString();
@@ -76,10 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
             editTextTextPassword.setError("Password cannot be empty.");
             editTextTextPassword.requestFocus();
         }
-        else if(TextUtils.isEmpty(name)) {
-            editTextTextPassword.setError("Name cannot be empty.");
-            editTextTextPassword.requestFocus();
-        }
+
         else if(TextUtils.isEmpty(confPassword)) {
             editTextTextConfPassword.setError("Please confirm your password.");
             editTextTextConfPassword.requestFocus();

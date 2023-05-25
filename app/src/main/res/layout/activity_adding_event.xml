@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event Name"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="24dp"
             />
 
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event Quota"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="24dp"
             />
 
@@ -65,6 +67,7 @@
             android:layout_marginRight="12dp"
             android:background="@drawable/rounded_corner"
             android:hint="8"
+            android:inputType="number"
             android:padding="8dp" />
 
 
@@ -104,22 +107,22 @@
 
             <EditText
                 android:id="@+id/editTextDate"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/rounded_corner"
                 android:hint="28.05.2023"
-                android:inputType="date"
+                android:inputType="date|number|datetime"
                 android:padding="8dp" />
 
             <EditText
                 android:id="@+id/editTextTime"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_marginLeft="100dp"
                 android:background="@drawable/rounded_corner"
                 android:hint="12.25"
-                android:inputType="time"
+                android:inputType="number|time"
                 android:padding="8dp" />
 
         </LinearLayout>
@@ -129,6 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:layout_marginLeft="18dp"
             android:text="Event Place" />
 
         <EditText
@@ -145,6 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:layout_marginLeft="18dp"
             android:text="Event Description" />
 
         <EditText
@@ -157,22 +162,30 @@
             android:hint="Wanna Play Volleyball For Fun"
             android:padding="8dp" />
 
-        <TextView
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Add Filters" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextFilter"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/rounded_corner"
-            android:hint=",,,"
-            android:padding="8dp" />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Main Campus"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="East Campus"/>
 
+
+            </RadioGroup>
+        </LinearLayout>
 
 
         <Button
@@ -180,11 +193,13 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:text="Create"
             android:textSize="18dp"
 
             />
+
+
 
     </LinearLayout>
 
