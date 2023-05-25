@@ -11,16 +11,18 @@ public class Event {
     protected Date date;
     protected int capacity;
     protected User[] users;
+    protected int quota;
     protected User hostUser;
 
-    public Event(String title,String desc,String loc, Date date,User[] totalUser, User host)
+    public Event(String title,int quota,String desc,String loc, Date date, User host)
     {
         this.title = title;
         this.description = desc;
         this.location = loc;
         this.date = date;
         this.capacity = 0;
-        this.users = totalUser;
+        this.quota = quota;
+        this.users = new User[quota];
         this.hostUser = host;
     }
 

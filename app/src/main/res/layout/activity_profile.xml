@@ -12,14 +12,14 @@
         android:layout_height="37dp"
         android:gravity="center_vertical"
         android:text="@string/biography"
-        app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toBottomOf="@+id/backButtonProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toEndOf="@+id/floatingActionButton"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButton" />
+        app:layout_constraintStart_toEndOf="@+id/backButtonProfile"
+        app:layout_constraintTop_toTopOf="@+id/backButtonProfile" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/backButtonProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -67,6 +67,7 @@
         android:gravity="top|left"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
+        android:focusable="false"
         android:text="I'm freshman at Bilkent University"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -29,7 +29,7 @@
             android:padding="8dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="Emir Eroğlu"/>
+            android:hint="Emir Erl"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -45,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(SignUpActivity.this,"Signed up",Toast.LENGTH_SHORT).show();
                 createUser();
-                startActivity(new Intent(SignUpActivity.this,verificationCodeActivity.class));
+
 
             }
         });
@@ -60,7 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void createUser(){
-
         String email = editTextTextEmailAddress.getText().toString();
         String password = editTextTextPassword.getText().toString();
         String confPassword = editTextTextConfPassword.getText().toString();
@@ -96,13 +95,18 @@ public class SignUpActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
                                     Toast.makeText(SignUpActivity.this,"Signed up successfully",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
+                                    startActivity(new Intent(SignUpActivity.this,verificationCodeActivity.class));
                                 }
                                 else {
                                     Toast.makeText(SignUpActivity.this,"SignUp Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+                        Toast.makeText(SignUpActivity.this,"Signed up successfully",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
+                    }
+                    else{
+                        Toast.makeText(SignUpActivity.this,"SignUp Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
