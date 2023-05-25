@@ -44,8 +44,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(SignUpActivity.this,"Signed up",Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(SignUpActivity.this,MainActivity.class));
                 createUser();
+                startActivity(new Intent(SignUpActivity.this,verificationCodeActivity.class));
+
             }
         });
 
