@@ -4,18 +4,20 @@ import java.util.ArrayList;
 
 public class User {
     protected String userName;         // username
-    protected String password;         //password
+
     protected String mail;             //mail
+    protected String id;
     protected double rating; // User's rating when creating user it is 0.
     protected int count; // This is the number of rating that user get.
     protected String bio;
     protected ArrayList<Event> attendedEvents;
 
-    public User(String name, String mail, String passW)
+    public User(String name, String mail, String uid)
     {
         this.userName = name;
         this.mail = mail;
-        this.password = passW;
+        this.id = uid;
+
         this.rating = 0;
         this.count = 0;
         this.bio = "Hi! i am Bilkent student.";
@@ -49,9 +51,6 @@ public class User {
     protected void setUserName(String userName) {
         this.userName = userName;
     }
-    protected void setPassword(String password) {
-        this.password = password;
-    }
     protected void setMail(String mail) {
         this.mail = mail;
     }
@@ -65,9 +64,6 @@ public class User {
         return userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     public String getMail() {
         return mail;

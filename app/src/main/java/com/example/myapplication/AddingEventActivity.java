@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AddingEventActivity extends AppCompatActivity {
     protected EditText eName,eQuota,eDate,eTime,ePlace,eDesc;
@@ -19,6 +21,10 @@ public class AddingEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState!= null)
+        {
+
+        }
         setContentView(R.layout.activity_adding_event);
         eName = findViewById(R.id.editTextEventName);
         eQuota = findViewById(R.id.editTextQuota);
@@ -95,7 +101,12 @@ public class AddingEventActivity extends AppCompatActivity {
         }
         else
         {
-
+            // Buraya new event oluşturcaz sonra o eventi database e atcaz.
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

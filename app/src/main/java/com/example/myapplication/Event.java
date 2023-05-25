@@ -4,17 +4,16 @@ package com.example.myapplication;
 import java.util.Date;
 
 public class Event {
-
     protected String title;
     protected String description;
     protected String location;
-    protected Date date;
+    protected String date;
     protected int capacity;
     protected User[] users;
     protected int quota;
     protected User hostUser;
 
-    public Event(String title,int quota,String desc,String loc, Date date, User host)
+    public Event(String title,int quota,String desc,String loc, String date, User host)
     {
         this.title = title;
         this.description = desc;
@@ -65,7 +64,7 @@ public class Event {
         this.location = location;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -93,7 +92,7 @@ public class Event {
         return location;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
