@@ -1,7 +1,12 @@
 
 package com.example.myapplication;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class Event {
     protected String title;
@@ -12,8 +17,9 @@ public class Event {
     protected User[] users;
     protected int quota;
     protected User hostUser;
+    protected String Time;
 
-    public Event(String title,int quota,String desc,String loc, String date, User host)
+    public Event(String title,int quota,String desc,String loc, String date, String time,User host)
     {
         this.title = title;
         this.description = desc;
@@ -21,6 +27,7 @@ public class Event {
         this.date = date;
         this.capacity = 0;
         this.quota = quota;
+        this.Time = time;
         this.users = new User[quota];
         this.hostUser = host;
     }
@@ -52,8 +59,46 @@ public class Event {
         }
     }
 
+    public boolean isFinished()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date date = new Date();
+        // These are the current time values.
+        int year = Integer.parseInt(dateFormat.format(date).substring(0,4));
+        int month = Integer.parseInt(dateFormat.format(date).substring(5,7));
+        int day = Integer.parseInt(dateFormat.format(date).substring(8,10));
+        int hour = Integer.parseInt(dateFormat.format(date).substring(11,13));
+        int minute = Integer.parseInt(dateFormat.format(date).substring(14));
+        // These are the event time values.
+        int yearE = Integer.parseInt(getDate().substring(0,4));
+        int monthE = Integer.parseInt(getDate().substring(5,7));
+        int dayE = Integer.parseInt(getDate().substring(8,10));
+        int hourE = Integer.parseInt(getTime().substring(0,2));
+        int minuteE = Integer.parseInt(getTime().substring(3));
+        // I will compare the event time and current time and return a boolean value
+
+        System.out.println(dateFormat.format(date));
+        return true; // düzeltcem
+    }
+
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public void setQuota(int quota) {
+        this.quota = quota;
+    }
+
+    public void setTime(String time) {
+        Time = time;
     }
 
     public void setDescription(String description) {
