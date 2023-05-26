@@ -81,9 +81,16 @@ public class LogInActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()) {
-                        Toast.makeText(LogInActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LogInActivity.this,MainActivity.class));
-                        finish();
+                        if(mAuth.getCurrentUser().isEmailVerified()) {
+                            Toast.makeText(LogInActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LogInActivity.this,MainActivity.class));
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(LogInActivity.this, "You have not verified your mail yet. Please verify your Bilkent mail.", Toast.LENGTH_SHORT).show();
+                            mAuth.getCurrentUser().sendEmailVerification();
+                        }
+
                     }
                     else {
                         Toast.makeText(LogInActivity.this,"Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
