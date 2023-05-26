@@ -3,24 +3,26 @@ package com.example.myapplication;
 import java.util.ArrayList;
 
 public class User {
-    protected String userName;         // username
+    protected String name;         // username
 
     protected String mail;             //mail
     protected String id;
+    protected String campus; //east campus or main campus
     protected double rating; // User's rating when creating user it is 0.
     protected int count; // This is the number of rating that user get.
     protected String bio;
     protected ArrayList<Event> attendedEvents;
 
-    public User(String name, String mail, String uid)
+    public User(String name, String mail, String bio, String uid, String campus)
     {
-        this.userName = name;
+        this.name = name;
         this.mail = mail;
+        this.bio = bio;
         this.id = uid;
+        this.campus = campus;  //east or main
 
         this.rating = 0;
         this.count = 0;
-        this.bio = "Hi! i am Bilkent student.";
         this.attendedEvents = new ArrayList<Event>();
     }
 
@@ -48,8 +50,8 @@ public class User {
         }
     }
 
-    protected void setUserName(String userName) {
-        this.userName = userName;
+    protected void setName(String name) {
+        this.name = name;
     }
     protected void setMail(String mail) {
         this.mail = mail;
@@ -60,13 +62,18 @@ public class User {
         this.bio = biography;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setCampus(String campus) {this.campus = campus;}
+
+    public String getName() {
+        return name;
     }
+    public String getBio() {return bio; }
 
 
     public String getMail() {
         return mail;
     }
+
+    public String getCampus() {return campus; }
 }
 
