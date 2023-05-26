@@ -21,9 +21,6 @@
             android:name=".UserInformationActivity"
             android:exported="false" />
         <activity
-            android:name=".verificationCodeActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddingEventActivity"
             android:exported="false" />
         <activity

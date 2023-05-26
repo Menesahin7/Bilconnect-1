@@ -67,19 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
         String confPassword = editTextTextConfPassword.getText().toString();
         String nameSurname = editTextTextPersonName.getText().toString();
 
-        //check is name appropriate
-        if(TextUtils.isEmpty(nameSurname)){
-            editTextTextPersonName.setError("Name and Surname cannot be empty");
-            editTextTextPersonName.requestFocus();
-        }
-        else {
-
-            if(nameSurname.length() - nameSurname.replaceAll(" ", "").length()<1){
-                editTextTextPersonName.setError("Please enter a valid name and surname");
-                editTextTextPersonName.requestFocus();
-            }
-        }
-
 
         if(TextUtils.isEmpty(email)) {
             editTextTextEmailAddress.setError("Email cannot be empty.");
@@ -110,17 +97,17 @@ public class SignUpActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
-                                    Toast.makeText(SignUpActivity.this,"Signed up successfully",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignUpActivity.this,verificationCodeActivity.class));
-
+                                    Toast.makeText(SignUpActivity.this,"Verification email sent. Please verify your email.",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(SignUpActivity.this,UserInformationActivity.class);
+                                    intent.putExtra("signup_email", email);
+                                    intent.putExtra("signup_password", password);
+                                    startActivity(intent);
                                 }
                                 else {
-                                    Toast.makeText(SignUpActivity.this,"SignUp Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpActivity.this,"Verification Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                        Toast.makeText(SignUpActivity.this,"Signed up successfully",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
                     }
                     else{
                         Toast.makeText(SignUpActivity.this,"SignUp Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
