@@ -15,15 +15,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+<<<<<<< Updated upstream
         btnProfile34 = findViewById(R.id.btnProfileMainActivity);
         btnProfile34.setOnClickListener(new View.OnClickListener() {
+=======
+        /*
+        btnProfile = findViewById(R.id.buttonProfile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+>>>>>>> Stashed changes
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,ProfileActivity.class));
             }
         });
+        */
+
 
 
 
