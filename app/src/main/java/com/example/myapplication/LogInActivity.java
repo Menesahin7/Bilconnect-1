@@ -7,6 +7,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +30,9 @@ public class LogInActivity extends AppCompatActivity {
     Button btnLogin;
     FirebaseAuth mAuth;
 
-    @SuppressLint("MissingInflatedId")
+    boolean passwordVisible;
+
+    @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +44,35 @@ public class LogInActivity extends AppCompatActivity {
         textViewSignUp = findViewById(R.id.textViewSignUp);
         btnLogin = findViewById(R.id.btnLogIn);
 
+
+
         mAuth = FirebaseAuth.getInstance();
+
+        //toggle button on login password
+        editTextPasswordLoginPage.setOnTouchListener((v, event) -> {
+            final int Right = 2;
+            if(event.getAction()== MotionEvent.ACTION_UP){
+                if(event.getRawX()>=editTextPasswordLoginPage.getRight()-editTextPasswordLoginPage.getCompoundDrawables()[Right].getBounds().width()){
+                    int selection= editTextPasswordLoginPage.getSelectionEnd();
+                    if(passwordVisible){
+                        editTextPasswordLoginPage.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_visibility_off_24,0);
+                        editTextPasswordLoginPage.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        passwordVisible=false;
+
+                    }else{
+                        editTextPasswordLoginPage.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_remove_red_eye_24,0);
+                        editTextPasswordLoginPage.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        passwordVisible=true;
+
+                    }
+
+                    editTextPasswordLoginPage.setSelection(selection);
+                    return true;
+                }
+            }
+
+            return false;
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
