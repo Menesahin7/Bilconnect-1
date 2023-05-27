@@ -187,8 +187,8 @@ public class AddingEventActivity extends AppCompatActivity {
             else if (east.isSelected())
                 campusAct = east.getText().toString();
 
-            Event event = new Event(eventName,Integer.valueOf(eventQuota),eventDesc,eventPlace,eventDate,eventTime,uid,campusAct);
             String eventId = (uid + "" + user.attendedEvents.size());
+            Event event = new Event(eventName,Integer.valueOf(eventQuota),eventDesc,eventPlace,eventDate,eventTime,uid,campusAct, eventId);
             myRef.child("events").child(eventId).setValue(event);
             Intent intent = (new Intent(AddingEventActivity.this,MainActivity.class));
             startActivity(intent);

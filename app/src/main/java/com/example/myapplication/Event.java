@@ -6,7 +6,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class Event {
@@ -19,12 +21,13 @@ public class Event {
     protected int quota;
     protected String hostId;
     protected String Time;
+    protected boolean active;
 
-    public static int eventId;
+    public static String eventId;
 
     protected String campus;
 
-    public Event(String title,int quota,String desc,String loc, String date, String time,String hostId,String campus)
+    public Event(String title,int quota,String desc,String loc, String date, String time,String hostId,String campus, String eventId)
     {
         this.title = title;
         this.description = desc;
@@ -36,56 +39,71 @@ public class Event {
         this.campus = campus;
         this.usersIdList = new ArrayList<String>();
         this.hostId = hostId;
+        this.active = true;
+        this.eventId = eventId;
     }
 
-    /*public void removeUser(User user)
+    public void removeUser(String uid)
     {
-        boolean isIn = false;
-        int index = -1;
-        for(int i = 0; i<this.users.length; i++)
+        for(int i = 0; i<this.usersIdList.size(); i++)
         {
-            if(users[i] == user)
+            if(usersIdList.get(i).equals(uid))
             {
-                isIn = true;
-                index = i;
+
+                usersIdList.remove(i);
             }
         }
-        if(isIn)
+    }
+
+    public void addUser(String uid)
+    {
+        if(capacity<this.usersIdList.size())
         {
-            users[index] = null;
+            usersIdList.add(uid);
+            capacity++;
         }
     }
 
-    public void addUser(User user)
+    public boolean isFinished()
     {
-        if(capacity<this.users.length)
-        {
-            users[capacity] = user;
-            capacity++;
+        Calendar calendar = Calendar.getInstance();
+        String dateFormat = "dd.MM.yyyy";  // Define the desired date format
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.getDefault());
+        String currentDate = simpleDateFormat.format(calendar.getTime());
+
+        int currentDay = Integer.valueOf(currentDate.substring(0,2));
+        int currentMonth = Integer.valueOf(currentDate.substring(3,5));
+        int currentYear = Integer.valueOf(currentDate.substring(6,10));
+
+        int eventDay = Integer.valueOf(date.substring(0,2));
+        int eventMonth = Integer.valueOf(date.substring(3,5));
+        int eventYear = Integer.valueOf(date.substring(6,10));
+
+        if(eventYear>currentYear) {
+            this.active = false;
+            return true;
         }
-    }*/
+        else if(eventMonth>currentMonth) {
+            this.active = false;
+            return true;
+        } else if (eventDay>currentDay) {
+            this.active = false;
+            return true;
+        }
+        else {
+            this.active = true;
+            return false;
+        }
+    }
 
-    /*public boolean isFinished()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        Date date = new Date();
-        // These are the current time values.
-        int year = Integer.parseInt(dateFormat.format(date).substring(0,4));
-        int month = Integer.parseInt(dateFormat.format(date).substring(5,7));
-        int day = Integer.parseInt(dateFormat.format(date).substring(8,10));
-        int hour = Integer.parseInt(dateFormat.format(date).substring(11,13));
-        int minute = Integer.parseInt(dateFormat.format(date).substring(14));
-        // These are the event time values.
-        int yearE = Integer.parseInt(getDate().substring(0,4));
-        int monthE = Integer.parseInt(getDate().substring(5,7));
-        int dayE = Integer.parseInt(getDate().substring(8,10));
-        int hourE = Integer.parseInt(getTime().substring(0,2));
-        int minuteE = Integer.parseInt(getTime().substring(3));
-        // I will compare the event time and current time and return a boolean value
-
-        System.out.println(dateFormat.format(date));
-        return true; // düzeltcem
-    }*/
+    public boolean isFull() {
+        if(capacity>=this.usersIdList.size())
+        {
+            this.active = false;
+            return true;
+        }
+        return false;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -142,6 +160,8 @@ public class Event {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public static String getEventId() {return eventId; }
 
     public String getTitle() {
         return title;
