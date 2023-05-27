@@ -68,6 +68,7 @@ public class User {
     }
     public String getBio() {return bio; }
 
+    public String getId() {return id; }
 
     public String getMail() {
         return mail;
