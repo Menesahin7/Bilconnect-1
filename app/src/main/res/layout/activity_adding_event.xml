@@ -112,7 +112,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/rounded_corner"
                 android:hint="28.05.2023"
-                android:inputType="date|number|datetime"
+                android:inputType="date"
                 android:padding="8dp" />
 
             <EditText
@@ -122,7 +122,7 @@
                 android:layout_marginLeft="100dp"
                 android:background="@drawable/rounded_corner"
                 android:hint="12.25"
-                android:inputType="number|time"
+                android:inputType="time"
                 android:padding="8dp" />
 
         </LinearLayout>

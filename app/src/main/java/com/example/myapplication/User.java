@@ -19,8 +19,11 @@ public class User {
         this.mail = mail;
         this.bio = bio;
         this.id = uid;
+<<<<<<< Updated upstream
         this.campus = campus;  //east or main
 
+=======
+>>>>>>> Stashed changes
         this.rating = 0;
         this.count = 0;
         this.attendedEvents = new ArrayList<Event>();
