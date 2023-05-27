@@ -3,9 +3,13 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +31,10 @@ public class SignUpActivity extends AppCompatActivity {
     TextView btnTextViewLogIn;
     FirebaseAuth mAuth;
 
+    EditText password;
+    boolean passwordVisible;
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,57 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
 
         mAuth = FirebaseAuth.getInstance();
+
+        //toggle button on password and password confirmation
+        password=findViewById(R.id.editTextTextPassword);
+
+        password.setOnTouchListener((v, event) -> {
+            final int Right = 2;
+            if(event.getAction()==MotionEvent.ACTION_UP){
+                if(event.getRawX()>=password.getRight()-password.getCompoundDrawables()[Right].getBounds().width()){
+                    int selection= password.getSelectionEnd();
+                    if(passwordVisible){
+                        password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_visibility_off_24,0);
+                        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        passwordVisible=false;
+
+                    }else{
+                        password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_remove_red_eye_24,0);
+                        password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        passwordVisible=true;
+
+                    }
+
+                    password.setSelection(selection);
+                    return true;
+                }
+            }
+
+            return false;
+        });
+        editTextTextConfPassword.setOnTouchListener((v, event) -> {
+            final int Right = 2;
+            if(event.getAction()==MotionEvent.ACTION_UP){
+                if(event.getRawX()>=editTextTextConfPassword.getRight()-editTextTextConfPassword.getCompoundDrawables()[Right].getBounds().width()){
+                    int selection= editTextTextConfPassword.getSelectionEnd();
+                    if(passwordVisible){
+                        editTextTextConfPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_visibility_off_24,0);
+                        editTextTextConfPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        passwordVisible=false;
+                    }else{
+                        editTextTextConfPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_remove_red_eye_24,0);
+                        editTextTextConfPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        passwordVisible=true;
+                    }
+                    editTextTextConfPassword.setSelection(selection);
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
