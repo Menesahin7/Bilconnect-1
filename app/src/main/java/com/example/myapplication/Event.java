@@ -22,7 +22,9 @@ public class Event {
 
     public static int eventId;
 
-    public Event(String title,int quota,String desc,String loc, String date, String time,String hostId)
+    protected String campus;
+
+    public Event(String title,int quota,String desc,String loc, String date, String time,String hostId,String campus)
     {
         this.title = title;
         this.description = desc;
@@ -31,6 +33,7 @@ public class Event {
         this.capacity = 0;
         this.quota = quota;
         this.Time = time;
+        this.campus = campus;
         this.usersIdList = new ArrayList<String>();
         this.hostId = hostId;
     }
@@ -90,6 +93,18 @@ public class Event {
 
     public String getTime() {
         return Time;
+    }
+
+    public String getHostId() {
+        return hostId;
+    }
+
+    public void setCampus(String campus) {
+        this.campus = campus;
+    }
+
+    public String getCampus() {
+        return campus;
     }
 
     public int getQuota() {

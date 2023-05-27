@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,11 +38,14 @@ public class AddingEventActivity extends AppCompatActivity {
     protected FloatingActionButton backButton;
     protected Button createEventButton;
 
+    String campusAct;
     Calendar calendar;
     String dateFormat;
     SimpleDateFormat simpleDateFormat;
     String currentDate;
     Date selectedDate;
+    RadioButton main,east;
+    RadioGroup group;
     FirebaseAuth mAuth;
     FirebaseDatabase mFireBaseDataBase;
     DatabaseReference userRef;
@@ -93,8 +98,10 @@ public class AddingEventActivity extends AppCompatActivity {
         eDesc = findViewById(R.id.editTextEventDesc);
         eTime = findViewById(R.id.editTextTime);
         ePlace = findViewById(R.id.editTextEventPlace);
+        main = findViewById(R.id.mainCamp);
+        east = findViewById(R.id.eastCamp);
+        group = findViewById(R.id.rGroupCampusAdd);
         backButton =  findViewById(R.id.floatingActionButton2);
-
        eDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +122,6 @@ public class AddingEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createEvent();
-
             }
         });
 
@@ -129,13 +135,17 @@ public class AddingEventActivity extends AppCompatActivity {
         String eventTime = eTime.getText().toString();
         String eventDesc = eDesc.getText().toString();
         String eventPlace = ePlace.getText().toString();
+        // Choosing the activity campus
 
 
         if(TextUtils.isEmpty(eventName)) {
             eName.setError("Event name cannot be empty.");
             eName.requestFocus();
-        }
-        else if(TextUtils.isEmpty(eventQuota))
+        } else if (group.getCheckedRadioButtonId() == -1) {
+            main.setError("One campus must be chosen");
+            System.out.println(2);
+            main.requestFocus();
+        } else if(TextUtils.isEmpty(eventQuota))
         {
             eQuota.setError("Event quota cannot be empty.");
             eQuota.requestFocus();
@@ -145,21 +155,21 @@ public class AddingEventActivity extends AppCompatActivity {
             eDate.setError("Event date cannot be empty.");
             eDate.requestFocus();
         }
-        /*else if(!eventDate.matches("(.*)/(.*)/(.*)"))
+        else if(!eventDate.matches("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$"))
         {
             eDate.setError("Event date should be formatted dd/mm/yyyy.");
             eDate.requestFocus();
-        }*/
+        }
         else if(TextUtils.isEmpty(eventTime))
         {
             eTime.setError("Event time cannot be empty.");
             eTime.requestFocus();
         }
-        /*else if(!eventTime.matches("(.*).(.*)"))
+        else if(!eventTime.matches("^(?:[01][0-9]|2[0-3]):[0-5][0-9]$"))
         {
-            eTime.setError("Event time should be formatted hh.mm .");
+            eTime.setError("Event time should be formatted hh.mm or hh:mm .");
             eTime.requestFocus();
-        }*/
+        }
         else if(TextUtils.isEmpty(eventDesc))
         {
             eDesc.setError("Event description cannot be empty.");
@@ -172,7 +182,12 @@ public class AddingEventActivity extends AppCompatActivity {
         }
         else
         {
-            Event event = new Event(eventName,Integer.valueOf(eventQuota),eventDesc,eventPlace,eventDate,eventTime,uid);
+            if(main.isSelected())
+                campusAct = main.getText().toString();
+            else if (east.isSelected())
+                campusAct = east.getText().toString();
+
+            Event event = new Event(eventName,Integer.valueOf(eventQuota),eventDesc,eventPlace,eventDate,eventTime,uid,campusAct);
             String eventId = (uid + "" + user.attendedEvents.size());
             myRef.child("events").child(eventId).setValue(event);
             Intent intent = (new Intent(AddingEventActivity.this,MainActivity.class));

@@ -111,17 +111,17 @@
                 android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/rounded_corner"
-                android:hint="28.05.2023"
+                android:hint="28/05/2023"
                 android:inputType="date"
                 android:padding="8dp" />
 
             <EditText
                 android:id="@+id/editTextTime"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginLeft="100dp"
                 android:background="@drawable/rounded_corner"
-                android:hint="12.25"
+                android:hint="12:25"
                 android:inputType="time"
                 android:padding="8dp" />
 
@@ -170,15 +170,18 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/rGroupCampusAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal">
                 <RadioButton
+                    android:id="@+id/mainCamp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Main Campus"/>
                 <RadioButton
+                    android:id="@+id/eastCamp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="East Campus"/>
