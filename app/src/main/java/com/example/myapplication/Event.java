@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -14,12 +15,14 @@ public class Event {
     protected String location;
     protected String date;
     protected int capacity;
-    protected User[] users;
+    protected ArrayList<String> usersIdList;
     protected int quota;
-    protected User hostUser;
+    protected String hostId;
     protected String Time;
 
-    public Event(String title,int quota,String desc,String loc, String date, String time,User host)
+    public static int eventId;
+
+    public Event(String title,int quota,String desc,String loc, String date, String time,String hostId)
     {
         this.title = title;
         this.description = desc;
@@ -28,11 +31,11 @@ public class Event {
         this.capacity = 0;
         this.quota = quota;
         this.Time = time;
-        this.users = new User[quota];
-        this.hostUser = host;
+        this.usersIdList = new ArrayList<String>();
+        this.hostId = hostId;
     }
 
-    public void removeUser(User user)
+    /*public void removeUser(User user)
     {
         boolean isIn = false;
         int index = -1;
@@ -57,9 +60,9 @@ public class Event {
             users[capacity] = user;
             capacity++;
         }
-    }
+    }*/
 
-    public boolean isFinished()
+    /*public boolean isFinished()
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date date = new Date();
@@ -79,7 +82,7 @@ public class Event {
 
         System.out.println(dateFormat.format(date));
         return true; // düzeltcem
-    }
+    }*/
 
     public void setTitle(String title) {
         this.title = title;
@@ -113,12 +116,12 @@ public class Event {
         this.date = date;
     }
 
-    public void setUsers(User[] users) {
-        this.users = users;
+    public void setUsersIdList(ArrayList<String> usersIdList) {
+        this.usersIdList = usersIdList;
     }
 
-    public void setHostUser(User hostUser) {
-        this.hostUser = hostUser;
+    public void setHostId(String hostUser) {
+        this.hostId = hostUser;
     }
 
     public void setCapacity(int capacity) {
@@ -145,12 +148,12 @@ public class Event {
         return capacity;
     }
 
-    public User[] getUsers() {
-        return users;
+    public ArrayList<String> getUsersIdList() {
+        return usersIdList;
     }
 
-    public User getHostUser() {
-        return hostUser;
+    public String getHostUser() {
+        return hostId;
     }
 }
 
