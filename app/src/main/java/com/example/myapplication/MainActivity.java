@@ -34,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnEditProfile = findViewById(R.id.btnEditProfile);
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,EditProfileActivity.class));
+            }
+        });
+
+
         btnProfile34 = findViewById(R.id.btnProfileMainActivity);
         btnProfile34.setOnClickListener(new View.OnClickListener() {
             @Override

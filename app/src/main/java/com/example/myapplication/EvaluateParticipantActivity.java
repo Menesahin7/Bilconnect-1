@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class EvaluateParticipantActivity extends AppCompatActivity {
     RatingBar eval;
     Button evaluateUser;
+    Button backButton;
     ListView listView;
     float rateValue;
     ArrayList<String> users = new ArrayList<>();
@@ -36,6 +37,8 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
         eval = findViewById(R.id.ratingBarStars);
         evaluateUser = findViewById(R.id.evaluateButton);
         listView = findViewById(R.id.listViewParticipants);
+        backButton= findViewById(R.id.floatingActionButtonclose);
+
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(EvaluateParticipantActivity.this, android.R.layout.activity_list_item,users);
 
         mRef = FirebaseDatabase.getInstance().getReference();
@@ -83,7 +86,17 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
 
             }
         });
+
+        /* bug var
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(EvaluateParticipantActivity.this,MainActivity.class));
+            }
+        });*/
     }
+
 
 
     public void evaluate()

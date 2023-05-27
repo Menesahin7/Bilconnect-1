@@ -4,4 +4,5 @@
     <string name="ratingPoint">4.2</string>
     <string name="biography">Profile</string>
     <string name="pass">pass</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
 </resources>
