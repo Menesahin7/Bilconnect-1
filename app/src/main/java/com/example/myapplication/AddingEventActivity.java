@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddingEventActivity extends AppCompatActivity {
@@ -53,34 +55,40 @@ public class AddingEventActivity extends AppCompatActivity {
     User user;
     String uid;
     Event event;
+    User usr;
+    ArrayList<User> userss = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState!= null)
-        {
-
-        }
 
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
-        mFireBaseDataBase = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app");
+        mFireBaseDataBase = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
         userRef = mFireBaseDataBase.getReference("users");
         myRef = mFireBaseDataBase.getReference();
         user = new User("deneme","deneme","bio","uid","main");
 
-        userRef.addValueEventListener(new ValueEventListener() {
+        myRef.child("users").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds : snapshot.getChildren()) {
-                    //user = ds.child(uid).getValue(User.class);
-                    //user = new User(dataSnapshot.child(uid).getValue(User.class).getName(),dataSnapshot.child(uid).getValue(User.class).getMail(),dataSnapshot.child(uid).getValue(User.class).getBio(),uid,dataSnapshot.child(uid).getValue(User.class).getCampus());
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    usr = (User) snapshot.getValue(User.class);
+                    try {
+                        userss.add(usr);
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Error occurred while retrieving user data
+                Log.e("firebase", "Error getting data", databaseError.toException());
             }
         });
 
@@ -102,7 +110,7 @@ public class AddingEventActivity extends AppCompatActivity {
         east = findViewById(R.id.eastCamp);
         group = findViewById(R.id.rGroupCampusAdd);
         backButton =  findViewById(R.id.floatingActionButton2);
-       eDate.setOnClickListener(new View.OnClickListener() {
+        eDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
@@ -129,6 +137,7 @@ public class AddingEventActivity extends AppCompatActivity {
 
     public void createEvent()
     {
+
         String eventName = eName.getText().toString();
         String eventQuota = eQuota.getText().toString();
         String eventDate = eDate.getText().toString();

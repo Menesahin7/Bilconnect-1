@@ -105,8 +105,6 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(SignUpActivity.this,"Signed up",Toast.LENGTH_SHORT).show();
                 createUser();
-
-
             }
         });
 

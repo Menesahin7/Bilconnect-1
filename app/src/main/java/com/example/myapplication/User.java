@@ -13,6 +13,11 @@ public class User {
     protected String bio;
     protected ArrayList<String> attendedEvents;
 
+    public User()
+    {
+
+    }
+
     public User(String name, String mail, String bio, String uid, String campus)
     {
         this.name = name;

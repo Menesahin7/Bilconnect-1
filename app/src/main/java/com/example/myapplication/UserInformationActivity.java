@@ -60,6 +60,7 @@ public class UserInformationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = userName.getText().toString();
                 String bio = biography.getText().toString();
+
                 if(mainCamp.isChecked()) {
                     campus = "main";
                 }

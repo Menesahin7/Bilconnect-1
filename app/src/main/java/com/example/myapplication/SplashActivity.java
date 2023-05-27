@@ -21,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 fUser = FirebaseAuth.getInstance().getCurrentUser();
+
                 Intent intent;
                 if(fUser == null)
                 {
@@ -30,6 +31,8 @@ public class SplashActivity extends AppCompatActivity {
                 {
                     intent = new Intent(SplashActivity.this,MainActivity.class);
                 }
+
+                //Intent intent = new Intent(SplashActivity.this,LogInActivity.class);
                 startActivity(intent);
                 finish();
             }
