@@ -79,6 +79,10 @@ public class User {
         return mail;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
     public String getCampus() {return campus; }
 }
 
