@@ -52,7 +52,6 @@
         android:layout_width="355dp"
         android:layout_height="74dp"
         android:background="@drawable/rounded_corner"
-        android:focusable="false"
         android:gravity="top|left"
         android:hint="bio"
         android:paddingLeft="20dp"
@@ -69,7 +68,6 @@
         android:layout_width="355dp"
         android:layout_height="48dp"
         android:background="@drawable/rounded_corner"
-        android:focusable="false"
         android:gravity="top|left"
         android:hint="name surname"
         android:paddingLeft="20dp"
@@ -97,13 +95,14 @@
         android:id="@+id/buttonSave"
         android:layout_width="330dp"
         android:layout_height="57dp"
+        android:layout_marginTop="150dp"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintTop_toBottomOf="@+id/ChangePasswordButton"
+        app:layout_constraintVertical_bias="0.235" />
 
     <TextView
         android:id="@+id/textView121111"
@@ -132,65 +131,29 @@
         app:layout_constraintTop_toBottomOf="@+id/circleImageViewProfile1111"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editText2"
+    <Button
+        android:id="@+id/ChangePasswordButton"
         android:layout_width="355dp"
         android:layout_height="48dp"
         android:autofillHints="q"
         android:background="@drawable/rounded_corner"
-        android:focusable="false"
         android:gravity="top|left"
-        android:hint="old password"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
+        android:text="Send password change mail"
         app:layout_constraintBottom_toBottomOf="parent"
+
+
         app:layout_constraintEnd_toEndOf="parent"
-
-
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChangePassword"
         app:layout_constraintVertical_bias="0.05" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="355dp"
-        android:layout_height="48dp"
-        android:autofillHints="q"
-        android:background="@drawable/rounded_corner"
-        android:focusable="false"
-        android:gravity="top|left"
-        android:hint="new password"
-        android:paddingLeft="20dp"
-        android:paddingTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
 
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="355dp"
-        android:layout_height="48dp"
-        android:autofillHints="q"
-        android:background="@drawable/rounded_corner"
-        android:focusable="false"
-        android:gravity="top|left"
-        android:hint="confirm new password"
-        android:paddingLeft="20dp"
-        android:paddingTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
 
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.05" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

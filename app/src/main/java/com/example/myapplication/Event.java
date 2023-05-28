@@ -75,6 +75,15 @@ public class Event {
         int eventMonth = Integer.valueOf(date.substring(3,5));
         int eventYear = Integer.valueOf(date.substring(6,10));
 
+        SimpleDateFormat sdf = new SimpleDateFormat("mm/hh");
+        String currentTime = sdf.format(new Date());
+
+        int currentHour = Integer.valueOf(currentTime.substring(0,2));
+        int currentMinute = Integer.valueOf(currentTime.substring(3,5));
+
+        int eventHour = Integer.valueOf(Time.substring(0,2));
+        int eventMinute = Integer.valueOf(Time.substring(3,5));
+
         if(eventYear>currentYear) {
             this.active = false;
             return true;
@@ -83,6 +92,14 @@ public class Event {
             this.active = false;
             return true;
         } else if (eventDay>currentDay) {
+            this.active = false;
+            return true;
+        }
+        else if(eventHour>currentHour) {
+            this.active = false;
+            return true;
+        }
+        else if(eventMinute>currentMinute) {
             this.active = false;
             return true;
         }
