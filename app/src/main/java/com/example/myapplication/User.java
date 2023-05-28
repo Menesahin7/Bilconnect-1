@@ -29,7 +29,9 @@ public class User {
         this.count = 0;
         this.attendedEvents = new ArrayList<String>();
     }
+    public User() {
 
+    }
     public void evalRating(int num)
     {
         double sum = this.rating*count;

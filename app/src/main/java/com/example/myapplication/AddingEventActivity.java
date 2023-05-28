@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -71,6 +72,7 @@ public class AddingEventActivity extends AppCompatActivity {
 
         myRef.child("users").addValueEventListener(new ValueEventListener() {
             @Override
+<<<<<<< Updated upstream
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
@@ -80,6 +82,16 @@ public class AddingEventActivity extends AppCompatActivity {
                     }
                     catch (Exception e)
                     {
+=======
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    user = snapshot.child(uid).getValue(User.class);
+                    //user = new User(snapshot.child(uid).getValue(User.class).getName(),snapshot.child(uid).getValue(User.class).getMail(),snapshot.child(uid).getValue(User.class).getBio(),uid,snapshot.child(uid).getValue(User.class).getCampus());
+                    try {
+                        System.out.println(user.getId());
+                    }
+                    catch (Exception e) {
+>>>>>>> Stashed changes
                         System.out.println(e.getMessage());
                     }
                 }
