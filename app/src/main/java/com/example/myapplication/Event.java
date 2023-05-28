@@ -16,8 +16,8 @@ public class Event {
     protected String description;
     protected String location;
     protected String date;
-    protected int capacity;
-    protected ArrayList<String> usersIdList;
+    protected int userCount;
+    protected String usersIdList;
     protected int quota;
     protected String hostId;
     protected String Time;
@@ -33,11 +33,11 @@ public class Event {
         this.description = desc;
         this.location = loc;
         this.date = date;
-        this.capacity = 0;
+        this.userCount = 1;
         this.quota = quota;
         this.Time = time;
         this.campus = campus;
-        this.usersIdList = new ArrayList<String>();
+        this.usersIdList = hostId + ",";
         this.hostId = hostId;
         this.active = true;
         this.eventId = eventId;
@@ -45,22 +45,18 @@ public class Event {
 
     public void removeUser(String uid)
     {
-        for(int i = 0; i<this.usersIdList.size(); i++)
-        {
-            if(usersIdList.get(i).equals(uid))
-            {
-
-                usersIdList.remove(i);
-            }
+        if(usersIdList.contains(uid)) {
+            usersIdList = usersIdList.replace((uid + ","), "");
+            userCount--;
         }
     }
 
     public void addUser(String uid)
     {
-        if(capacity<this.usersIdList.size())
+        if(userCount<quota)
         {
-            usersIdList.add(uid);
-            capacity++;
+            usersIdList = usersIdList + uid + ",";
+            userCount++;
         }
     }
 
@@ -97,7 +93,7 @@ public class Event {
     }
 
     public boolean isFull() {
-        if(capacity>=this.usersIdList.size())
+        if(userCount>=quota)
         {
             this.active = false;
             return true;
@@ -149,17 +145,11 @@ public class Event {
         this.date = date;
     }
 
-    public void setUsersIdList(ArrayList<String> usersIdList) {
-        this.usersIdList = usersIdList;
-    }
 
     public void setHostId(String hostUser) {
         this.hostId = hostUser;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
 
     public static String getEventId() {return eventId; }
 
@@ -179,13 +169,9 @@ public class Event {
         return date;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
+    public int getUserCount() {return userCount;}
 
-    public ArrayList<String> getUsersIdList() {
-        return usersIdList;
-    }
+    public String getUsersIdList() {return usersIdList;}
 
     public String getHostUser() {
         return hostId;

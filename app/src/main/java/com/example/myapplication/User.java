@@ -11,7 +11,7 @@ public class User {
     protected double rating; // User's rating when creating user it is 0.
     protected int count; // This is the number of rating that user get.
     protected String bio;
-    protected ArrayList<String> attendedEvents;
+    protected String attendedEvents;
 
     public User()
     {
@@ -27,10 +27,7 @@ public class User {
         this.campus = campus;  //east or main
         this.rating = 0;
         this.count = 0;
-        this.attendedEvents = new ArrayList<String>();
-    }
-    public User() {
-
+        this.attendedEvents = "";
     }
     public void evalRating(int num)
     {
@@ -42,17 +39,16 @@ public class User {
 
     public void attendEvent(String e)
     {
-        if(!attendedEvents.contains(e))
-        {
-            attendedEvents.add(e);
-        }
+        attendedEvents = attendedEvents + e +",";
+        count++;
     }
 
     public void removeEvent(String e)
     {
         if(attendedEvents.contains(e))
         {
-            attendedEvents.remove(e);
+            attendedEvents.replace((e + ","), "");
+            count--;
         }
     }
 
@@ -86,5 +82,9 @@ public class User {
     }
 
     public String getCampus() {return campus; }
+
+    public String getAttendedEvents() {return attendedEvents;}
+
+    public int getCount() {return count;}
 }
 

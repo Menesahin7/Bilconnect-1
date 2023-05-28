@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -68,11 +67,9 @@ public class AddingEventActivity extends AppCompatActivity {
         mFireBaseDataBase = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
         userRef = mFireBaseDataBase.getReference("users");
         myRef = mFireBaseDataBase.getReference();
-        user = new User("deneme","deneme","bio","uid","main");
 
         myRef.child("users").addValueEventListener(new ValueEventListener() {
             @Override
-<<<<<<< Updated upstream
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
@@ -82,16 +79,6 @@ public class AddingEventActivity extends AppCompatActivity {
                     }
                     catch (Exception e)
                     {
-=======
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds : snapshot.getChildren()) {
-                    user = snapshot.child(uid).getValue(User.class);
-                    //user = new User(snapshot.child(uid).getValue(User.class).getName(),snapshot.child(uid).getValue(User.class).getMail(),snapshot.child(uid).getValue(User.class).getBio(),uid,snapshot.child(uid).getValue(User.class).getCampus());
-                    try {
-                        System.out.println(user.getId());
-                    }
-                    catch (Exception e) {
->>>>>>> Stashed changes
                         System.out.println(e.getMessage());
                     }
                 }
@@ -122,12 +109,6 @@ public class AddingEventActivity extends AppCompatActivity {
         east = findViewById(R.id.eastCamp);
         group = findViewById(R.id.rGroupCampusAdd);
         backButton =  findViewById(R.id.floatingActionButton2);
-        eDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +152,11 @@ public class AddingEventActivity extends AppCompatActivity {
             eQuota.setError("Event quota cannot be empty.");
             eQuota.requestFocus();
         }
+        else if(Integer.valueOf(eventQuota)<=1)
+        {
+            eQuota.setError("Event quota cannot less then 2");
+            eQuota.requestFocus();
+        }
         else if(TextUtils.isEmpty(eventDate))
         {
             eDate.setError("Event date cannot be empty.");
@@ -208,38 +194,35 @@ public class AddingEventActivity extends AppCompatActivity {
             else if (east.isSelected())
                 campusAct = east.getText().toString();
 
-            String eventId = (uid + "" + user.attendedEvents.size());
+
+
+            String eventId = "";
+            for(int i = 0; i<userss.size(); i++) {
+                if (userss.get(i).getId().equals(mAuth.getUid())) {
+                    eventId = mAuth.getUid() + userss.get(i).getCount();
+                }
+            }
             Event event = new Event(eventName,Integer.valueOf(eventQuota),eventDesc,eventPlace,eventDate,eventTime,uid,campusAct, eventId);
             myRef.child("events").child(eventId).setValue(event);
+            try {
+                for(int i = 0; i<userss.size(); i++) {
+                    if(userss.get(i).getId().equals(mAuth.getUid())) {
+                        User usr = userss.get(i);
+                        usr.attendEvent(eventId);
+                        myRef.child("users").child(uid).setValue(usr);
+                    }
+                }
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+
             Intent intent = (new Intent(AddingEventActivity.this,MainActivity.class));
             startActivity(intent);
         }
     }
 
-    private void showDatePickerDialog() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDayOfMonth) {
-                        Calendar selectedDateCalendar = Calendar.getInstance();
-                        selectedDateCalendar.set(Calendar.YEAR, year);
-                        selectedDateCalendar.set(Calendar.MONTH, month);
-                        selectedDateCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        selectedDate = selectedDateCalendar.getTime();
-                    }
-                },
-                year,
-                month,
-                dayOfMonth);
-
-        datePickerDialog.show();
-    }
 
 
     @Override
