@@ -6,29 +6,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class EvaluateParticipantActivity extends AppCompatActivity {
     RatingBar eval;
     Button evaluateUser;
-    Button backButton;
+    FloatingActionButton backButton;
     ListView listView;
     float rateValue;
-    ArrayList<String> users = new ArrayList<>();
+    ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<String> users = new ArrayList<String>();
+    FirebaseDatabase db;
     DatabaseReference mRef;
+    Event eventt;
+    String usersId;
+    Event event;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +49,62 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
 
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(EvaluateParticipantActivity.this, android.R.layout.activity_list_item,users);
 
-        mRef = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
+        mRef = db.getReference();
+
+        mRef.child("events").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    eventt = (Event) snapshot.getValue(Event.class);
+                    usersId = eventt.getUsersIdList();
+                    try {
+                        events.add(event);
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Error occurred while retrieving user data
+                Log.e("firebase", "Error getting data", databaseError.toException());
+            }
+        });
+
+        for(int i = 0; i<events.size(); i++) {
+            if(events.get(i).getEventId().equals("KHTzjJLt35ZCORNF4EQIhthF4xL20")) {
+                event = events.get(0);
+            }
+        }
+
+        //if (usersId.substring(0, usersId.indexOf(",")).equals(FirebaseAuth.getInstance().getUid())) {
+        users.add(usersId.substring(0, usersId.indexOf(",")));
+        usersId = usersId.substring(usersId.indexOf(",") + 1);
+        //}
+
+        for (int i = 1; i < event.getUserCount(); i++) {
+            if(usersId.length()>2) {
+                if (usersId.substring(0, usersId.indexOf(",")).equals(FirebaseAuth.getInstance().getUid())) {
+                    users.add(usersId.substring(0, usersId.indexOf(",")));
+                    usersId = usersId.substring(usersId.indexOf(",") + 1);
+                }
+            }
+
+        }
+
+
+
+        // Update the ListView adapter after adding users
+        arrAdapter.notifyDataSetChanged();
+
         evaluateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,34 +121,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
             }
         });
 
-        mRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String name = snapshot.getValue(String.class);
-                users.add(name);
-                arrAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                arrAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         /* bug var
         backButton.setOnClickListener(new View.OnClickListener() {

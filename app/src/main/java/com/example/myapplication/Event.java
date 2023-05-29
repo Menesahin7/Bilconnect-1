@@ -23,7 +23,7 @@ public class Event {
     protected String Time;
     protected boolean active;
 
-    public static String eventId;
+    protected String eventId;
 
     protected String campus;
 
@@ -43,6 +43,12 @@ public class Event {
         this.eventId = eventId;
     }
 
+<<<<<<< Updated upstream
+=======
+    public Event(){
+
+    }
+>>>>>>> Stashed changes
 
     public void removeUser(String uid)
     {
@@ -169,7 +175,9 @@ public class Event {
     }
 
 
-    public static String getEventId() {return eventId; }
+    public String getEventId() {
+        return eventId;
+    }
 
     public String getTitle() {
         return title;
