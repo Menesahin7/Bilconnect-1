@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,11 +40,14 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
     Event eventt;
     String usersId;
     Event event;
+    User userToEvaluate;
     ArrayAdapter<String> arrAdapter;
+    ArrayList<User> userArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluate_participant);
+        userArray = new ArrayList<User>();
 
         eval = findViewById(R.id.ratingBarStars);
         evaluateUser = findViewById(R.id.evaluateButton);
@@ -75,10 +80,12 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                                             {
                                                 String sUserId = eventt.usersIdList.substring(i,eventt.usersIdList.indexOf(","));
                                                 System.out.println(sUserId);
-                                                if(userId.equals(sUserId))
+                                                if(userId.equals(sUserId) )
                                                 {
+                                                    User usr = (User) snapshot.getValue(User.class);
                                                     String userName = snapshot.child("name").getValue(String.class);
                                                     users.add(userName);
+                                                    userArray.add(usr);
                                                     System.out.println(6);
                                                     arrAdapter.notifyDataSetChanged();
                                                 }
@@ -123,6 +130,13 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                userToEvaluate = userArray.get(position);
+            }
+        });
+
         /* bug var
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +149,14 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
 
     public void evaluate()
     {
+        try {
+            userToEvaluate.evalRating(rateValue);
+            mRef.child("users").child(userToEvaluate.getId()).setValue(userToEvaluate);
+        }
+        catch (Exception e) {
+            Toast.makeText(EvaluateParticipantActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+
         // this method will evaluate the current users rating.
 
     }

@@ -9,7 +9,8 @@ public class User {
     protected String id;
     protected String campus; //east campus or main campus
     protected double rating; // User's rating when creating user it is 0.
-    protected int count; // This is the number of rating that user get.
+    protected int count; // This is the number of events that user attended.
+    protected int ratingCount;
     protected String bio;
     protected String attendedEvents;
 
@@ -29,12 +30,12 @@ public class User {
         this.count = 0;
         this.attendedEvents = "";
     }
-    public void evalRating(int num)
+    public void evalRating(double num)
     {
-        double sum = this.rating*count;
+        double sum = this.rating*ratingCount;
         sum += num;
-        this.count++;
-        this.rating = sum / count;
+        this.ratingCount++;
+        this.rating = sum / ratingCount;
     }
 
     public void attendEvent(String e)
@@ -86,6 +87,10 @@ public class User {
     public String getAttendedEvents() {return attendedEvents;}
 
     public int getCount() {return count;}
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
 
     public String toString()
     {
