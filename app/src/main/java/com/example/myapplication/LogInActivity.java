@@ -85,6 +85,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LogInActivity.this,ForgotPasswordActivity.class));
+
             }
         });
 
@@ -92,6 +93,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LogInActivity.this,SignUpActivity.class));
+
             }
         });
 

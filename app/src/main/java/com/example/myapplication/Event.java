@@ -43,6 +43,7 @@ public class Event {
         this.eventId = eventId;
     }
 
+
     public void removeUser(String uid)
     {
         if(usersIdList.contains(uid)) {

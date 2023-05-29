@@ -112,6 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
+
             }
         });
 
@@ -159,6 +160,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     intent.putExtra("signup_email", email);
                                     intent.putExtra("signup_password", password);
                                     startActivity(intent);
+                                    finish();
                                 }
                                 else {
                                     Toast.makeText(SignUpActivity.this,"Verification Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

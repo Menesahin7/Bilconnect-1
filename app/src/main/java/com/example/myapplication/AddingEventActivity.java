@@ -74,13 +74,9 @@ public class AddingEventActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
                     usr = (User) snapshot.getValue(User.class);
-                    try {
                         userss.add(usr);
-                    }
-                    catch (Exception e)
-                    {
-                        System.out.println(e.getMessage());
-                    }
+
+
                 }
             }
 
