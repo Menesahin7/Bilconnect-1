@@ -80,7 +80,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                                             {
                                                 String sUserId = eventt.usersIdList.substring(i,eventt.usersIdList.indexOf(","));
                                                 System.out.println(sUserId);
-                                                if(userId.equals(sUserId) )
+                                                if(userId.equals(sUserId) && !userId.equals(FirebaseAuth.getInstance().getUid()))
                                                 {
                                                     User usr = (User) snapshot.getValue(User.class);
                                                     String userName = snapshot.child("name").getValue(String.class);
