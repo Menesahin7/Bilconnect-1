@@ -43,12 +43,9 @@ public class Event {
         this.eventId = eventId;
     }
 
-<<<<<<< Updated upstream
-=======
     public Event(){
 
     }
->>>>>>> Stashed changes
 
     public void removeUser(String uid)
     {

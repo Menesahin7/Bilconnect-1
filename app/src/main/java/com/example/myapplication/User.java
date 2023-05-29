@@ -86,5 +86,10 @@ public class User {
     public String getAttendedEvents() {return attendedEvents;}
 
     public int getCount() {return count;}
+
+    public String toString()
+    {
+        return getName();
+    }
 }
 

@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EvaluateParticipantActivity extends AppCompatActivity {
     RatingBar eval;
@@ -37,6 +38,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
     Event eventt;
     String usersId;
     Event event;
+    ArrayAdapter<String> arrAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +48,8 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
         evaluateUser = findViewById(R.id.evaluateButton);
         listView = findViewById(R.id.listViewParticipants);
         backButton= findViewById(R.id.floatingActionButtonclose);
-
-        ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(EvaluateParticipantActivity.this, android.R.layout.activity_list_item,users);
+        arrAdapter  = new ArrayAdapter<String>(EvaluateParticipantActivity.this,android.R.layout.simple_list_item_1,users);
+        listView.setAdapter(arrAdapter);
 
         db = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
         mRef = db.getReference();
@@ -55,56 +57,56 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
         mRef.child("events").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot:dataSnapshot.getChildren())
-                {
-                    eventt = (Event) snapshot.getValue(Event.class);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    eventt = snapshot.getValue(Event.class);
                     usersId = eventt.getUsersIdList();
-                    try {
-                        events.add(event);
-                    }
-                    catch (Exception e)
+                    if(eventt.getEventId() != null && !eventt.getEventId().isEmpty())
                     {
-                        System.out.println(e.getMessage());
+                        System.out.println(eventt.getEventId());
+                        if (eventt.getEventId().equals("KHTzjJLt35ZCORNF4EQIhthF4xL20")) {
+                                mRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                                        {
+                                            String userId = snapshot.getKey();
+                                            System.out.println(userId);
+                                            for(int i = 0; i<eventt.usersIdList.length();i++)
+                                            {
+                                                String sUserId = eventt.usersIdList.substring(i,eventt.usersIdList.indexOf(","));
+                                                System.out.println(sUserId);
+                                                if(userId.equals(sUserId))
+                                                {
+                                                    String userName = snapshot.child("name").getValue(String.class);
+                                                    users.add(userName);
+                                                    System.out.println(6);
+                                                    arrAdapter.notifyDataSetChanged();
+                                                }
+                                                i = eventt.usersIdList.indexOf(",");
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        // Error occurred while retrieving user data
+                                        Log.e("firebase", "Error getting user data", databaseError.toException());
+                                    }
+                                });
+                        }
                     }
-
-
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Error occurred while retrieving user data
+                // Error occurred while retrieving event data
                 Log.e("firebase", "Error getting data", databaseError.toException());
             }
         });
 
-        for(int i = 0; i<events.size(); i++) {
-            if(events.get(i).getEventId().equals("KHTzjJLt35ZCORNF4EQIhthF4xL20")) {
-                event = events.get(0);
-            }
-        }
 
-        //if (usersId.substring(0, usersId.indexOf(",")).equals(FirebaseAuth.getInstance().getUid())) {
-        users.add(usersId.substring(0, usersId.indexOf(",")));
-        usersId = usersId.substring(usersId.indexOf(",") + 1);
-        //}
-
-        for (int i = 1; i < event.getUserCount(); i++) {
-            if(usersId.length()>2) {
-                if (usersId.substring(0, usersId.indexOf(",")).equals(FirebaseAuth.getInstance().getUid())) {
-                    users.add(usersId.substring(0, usersId.indexOf(",")));
-                    usersId = usersId.substring(usersId.indexOf(",") + 1);
-                }
-            }
-
-        }
-
-
-
-        // Update the ListView adapter after adding users
         arrAdapter.notifyDataSetChanged();
-
         evaluateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,31 +114,28 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                 startActivity(new Intent(EvaluateParticipantActivity.this,MainActivity.class));
             }
         });
+
         eval.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 rateValue = ratingBar.getRating();
                 //  User ratingi artıcak firebaseden current userı alıp ona göre userdaki metodu kullanacaz
-
             }
         });
-
-
 
         /* bug var
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startActivity(new Intent(EvaluateParticipantActivity.this,MainActivity.class));
             }
         });*/
     }
 
 
-
     public void evaluate()
     {
         // this method will evaluate the current users rating.
+
     }
 }

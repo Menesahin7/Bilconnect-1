@@ -22,13 +22,10 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 fUser = FirebaseAuth.getInstance().getCurrentUser();
 
-<<<<<<< Updated upstream
-                Intent intent;
-                     intent= (new Intent(SplashActivity.this,LogInActivity.class));
 
-=======
-                //Intent intent;
-                /*
+                Intent intent;
+                //intent= (new Intent(SplashActivity.this,LogInActivity.class));
+
                 if(fUser == null)
                 {
                      intent= (new Intent(SplashActivity.this,LogInActivity.class));
@@ -37,13 +34,8 @@ public class SplashActivity extends AppCompatActivity {
                 {
                     intent = new Intent(SplashActivity.this,MainActivity.class);
                 }
-                */
->>>>>>> Stashed changes
 
-
-                Intent intent = new Intent(SplashActivity.this,LogInActivity.class);
                 startActivity(intent);
-
             }
         },1000);
     }

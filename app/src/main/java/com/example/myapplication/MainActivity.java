@@ -42,19 +42,12 @@ public class MainActivity extends AppCompatActivity {
         myRef = mFireBaseDataBase.getReference();
 
 
-        addEvent = findViewById(R.id.btnAddEvent);
-        addEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,AddingEventActivity.class));
-            }
-        });
 
         profileMain = findViewById(R.id.btnProfile);
         profileMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                startActivity(new Intent(MainActivity.this,EvaluateParticipantActivity.class));
             }
         });
 
@@ -72,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
       public void viewSettings(){
         recyclerView = findViewById(R.id.recyclerView);
-
         eventRecyclerAdapter = new EventRecyclerAdapter(events);
         recyclerView.setAdapter(eventRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

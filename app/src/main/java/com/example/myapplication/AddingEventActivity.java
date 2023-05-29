@@ -73,15 +73,10 @@ public class AddingEventActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
-<<<<<<< Updated upstream
+
                     usr = (User) snapshot.getValue(User.class);
-=======
                     usr = snapshot.getValue(User.class);
-                    try {
->>>>>>> Stashed changes
-                        userss.add(usr);
-
-
+                    userss.add(usr);
                 }
             }
 
