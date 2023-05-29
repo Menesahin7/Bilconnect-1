@@ -55,7 +55,6 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
             editTextPlace = itemView.findViewById(R.id.editTextPlace);
             editTextDesc = itemView.findViewById(R.id.editTextDesc);
             btnAttendEvent = itemView.findViewById(R.id.btnAttendEvent);
-
         }
     }
 

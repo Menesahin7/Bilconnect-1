@@ -88,22 +88,22 @@ public class Event {
         int eventHour = Integer.valueOf(Time.substring(0,2));
         int eventMinute = Integer.valueOf(Time.substring(3,5));
 
-        if(eventYear>currentYear) {
+        if(eventYear<currentYear) {
             this.active = false;
             return true;
         }
-        else if(eventMonth>currentMonth) {
+        else if(eventMonth<currentMonth) {
             this.active = false;
             return true;
-        } else if (eventDay>currentDay) {
-            this.active = false;
-            return true;
-        }
-        else if(eventHour>currentHour) {
+        } else if (eventDay<currentDay) {
             this.active = false;
             return true;
         }
-        else if(eventMinute>currentMinute) {
+        else if(eventDay == currentDay && eventHour<currentHour) {
+            this.active = false;
+            return true;
+        }
+        else if(eventDay == currentDay && eventHour == currentHour && eventMinute<currentMinute) {
             this.active = false;
             return true;
         }

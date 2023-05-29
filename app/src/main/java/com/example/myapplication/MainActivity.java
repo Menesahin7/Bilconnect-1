@@ -1,20 +1,21 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
@@ -35,14 +36,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fillArray();
-        viewSettings();
 
         mFireBaseDataBase = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app");
         myRef = mFireBaseDataBase.getReference();
 
+        events = new ArrayList<>();
+        Context c = this;
+        myRef.child("events").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Event e = dataSnapshot.getValue(Event.class);
+                    System.out.println(e);
+                    if(!e.isFinished() && !e.isFull())
+                    {
+                        System.out.println(3);
+                        events.add(e);
+                    }
+                }
+                recyclerView = findViewById(R.id.recyclerView);
+                eventRecyclerAdapter = new EventRecyclerAdapter(events);
+                recyclerView.setAdapter(eventRecyclerAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(c));
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
         profileMain = findViewById(R.id.btnProfile);
         profileMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,25 +80,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, AddingEventActivity.class));
             }
         });
-
-
-
     }
-
-      public void viewSettings(){
-        recyclerView = findViewById(R.id.recyclerView);
-        eventRecyclerAdapter = new EventRecyclerAdapter(events);
-        recyclerView.setAdapter(eventRecyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-     public void fillArray(){
-         events = new ArrayList<>();
-        events.add(new Event("voleybol",2,"asd","asdas","12/12/12","23:12","enes","main","dfasd"));
-        events.add(new Event("futbol",2,"asd","asdas","12/12/12","23:12","enes","main","dfasd"));
-        events.add(new Event("hentbol",2,"asd","asdas","12/12/12","23:12","enes","main","dfasd"));
-        events.add(new Event("basketbol",2,"asd","asdas","12/12/12","23:12","enes","main","dfasd"));
-
-    }
-
 }
