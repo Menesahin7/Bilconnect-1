@@ -13,6 +13,8 @@
         android:layout_height="53dp"
         android:gravity="center_vertical"
         android:text="Edit Profile"
+        android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/backButtonProfile1111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.312"
@@ -34,60 +36,46 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_navigate_before_24" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageViewProfile1111"
-        android:layout_width="411dp"
-        android:layout_height="103dp"
-        android:src="@drawable/profile"
-        app:civ_border_color="@color/app_color"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBiography1111"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.112" />
-
 
     <EditText
         android:id="@+id/editTextBiography1111"
         android:layout_width="355dp"
-        android:layout_height="74dp"
+        android:layout_height="75dp"
         android:background="@drawable/rounded_corner"
         android:gravity="top|left"
-        android:hint="bio"
+        android:hint="Biography"
         android:paddingLeft="20dp"
-        android:paddingTop="5dp"
+        android:paddingTop="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintVertical_bias="0.401" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="355dp"
         android:layout_height="48dp"
         android:background="@drawable/rounded_corner"
-        android:gravity="top|left"
-        android:hint="name surname"
+        android:gravity="center"
+        android:hint="Name Surname"
         android:paddingLeft="20dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBiography1111"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameSurname"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.128" />
 
     <TextView
         android:id="@+id/btnChangePassword"
         android:layout_width="187dp"
         android:layout_height="31dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="56dp"
         android:gravity="center"
         android:text="Change Password"
+        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBiography1111" />
 
@@ -112,6 +100,8 @@
         android:layout_marginBottom="8dp"
         android:text="Change Biography"
         android:textSize="20dp"
+        android:textColor="@color/black"
+
         app:layout_constraintBottom_toTopOf="@+id/editTextBiography1111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -123,13 +113,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Change Name Surname"
+        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textView121111"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageViewProfile1111"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.271" />
 
     <Button
         android:id="@+id/ChangePasswordButton"
@@ -137,23 +128,17 @@
         android:layout_height="48dp"
         android:autofillHints="q"
         android:background="@drawable/rounded_corner"
-        android:gravity="top|left"
+        android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
-        android:text="Send password change mail"
+        android:text="Send Password To My E-mail"
         app:layout_constraintBottom_toBottomOf="parent"
 
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChangePassword"
-        app:layout_constraintVertical_bias="0.05" />
-
-
-
-
-
+        app:layout_constraintVertical_bias="0.065" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

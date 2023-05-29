@@ -22,7 +22,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText editTextTextPersonName;
     EditText editTextTextEmailAddress;
     EditText editTextTextPassword;
     EditText editTextTextConfPassword;
@@ -41,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        editTextTextPersonName = findViewById(R.id.editTextTextName);
+
         editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = findViewById(R.id.editTextTextPassword);
         editTextTextConfPassword = findViewById(R.id.editTextTextConfPassword);
@@ -123,7 +122,6 @@ public class SignUpActivity extends AppCompatActivity {
         String email = editTextTextEmailAddress.getText().toString();
         String password = editTextTextPassword.getText().toString();
         String confPassword = editTextTextConfPassword.getText().toString();
-        String nameSurname = editTextTextPersonName.getText().toString();
 
 
         if(TextUtils.isEmpty(email)) {
