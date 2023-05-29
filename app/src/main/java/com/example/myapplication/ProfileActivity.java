@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,13 +21,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+
 
 public class ProfileActivity extends AppCompatActivity {
     User user;
     FloatingActionButton backButton;
     Button lastAttended;
-    TextView nameS,rating;
+    TextView nameS,rating, editProfilebtn;
     EditText biography;
 
     FirebaseUser currentUser;
@@ -37,6 +38,11 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+
+
+    TextView textViewNameAndSurname;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         nameS = findViewById(R.id.textVievNameSurname);
         biography = findViewById(R.id.editTextBiography);
         rating = findViewById(R.id.textViewRating);
+
         myRef.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -72,6 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.backButtonProfile);
         lastAttended = findViewById(R.id.buttonLastAttendedEvent);
+        textViewNameAndSurname = findViewById(R.id.textVievNameSurname);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +90,21 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // buraya last attended eventleri listelediğimiz sayfaya yönlendircez
+
             }
         });
+
+        editProfilebtn = findViewById(R.id.textViewEditProfile);
+        editProfilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this,EditProfileActivity.class));
+            }
+        });
+
+
+
+
+
     }
 }

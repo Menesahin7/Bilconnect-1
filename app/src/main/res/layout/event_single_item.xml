@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@drawable/rounded_corner"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/textViewEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Name"
+        android:textColor="@color/black"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_corner"
+        android:textSize="18sp"
+        />
+
+    <Button
+        android:id="@+id/btnAttendEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Attend" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAttendEvent"
+        android:background="@drawable/rounded_corner"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Participants:"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/editTextParticipants"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+                android:text="7/8" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/editTextDate"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+
+                android:text="XX/XX/XXXX" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/editTextTime"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+
+                android:text="15:30" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Place:"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/editTextPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+
+                android:text="Library" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/editTextDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+
+                android:text="Wanna Play For Fun" />
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
