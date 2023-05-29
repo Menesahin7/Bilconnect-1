@@ -73,7 +73,12 @@ public class AddingEventActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
+<<<<<<< Updated upstream
                     usr = (User) snapshot.getValue(User.class);
+=======
+                    usr = snapshot.getValue(User.class);
+                    try {
+>>>>>>> Stashed changes
                         userss.add(usr);
 
 
@@ -126,7 +131,10 @@ public class AddingEventActivity extends AppCompatActivity {
 
     public void createEvent()
     {
-
+        for(int i = 0; i<userss.size();i++)
+        {
+            System.out.println(userss.get(i));
+        }
         String eventName = eName.getText().toString();
         String eventQuota = eQuota.getText().toString();
         String eventDate = eDate.getText().toString();

@@ -22,11 +22,26 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 fUser = FirebaseAuth.getInstance().getCurrentUser();
 
+<<<<<<< Updated upstream
                 Intent intent;
                      intent= (new Intent(SplashActivity.this,LogInActivity.class));
 
+=======
+                //Intent intent;
+                /*
+                if(fUser == null)
+                {
+                     intent= (new Intent(SplashActivity.this,LogInActivity.class));
+                }
+                else
+                {
+                    intent = new Intent(SplashActivity.this,MainActivity.class);
+                }
+                */
+>>>>>>> Stashed changes
 
-                //Intent intent = new Intent(SplashActivity.this,LogInActivity.class);
+
+                Intent intent = new Intent(SplashActivity.this,LogInActivity.class);
                 startActivity(intent);
 
             }
