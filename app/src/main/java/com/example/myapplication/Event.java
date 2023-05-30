@@ -209,8 +209,6 @@ public class Event implements Comparable<Event>{
 
     @Override
     public int compareTo(Event o) {
-
-
         int eventDay = Integer.valueOf(date.substring(0,2));
         int eventMonth = Integer.valueOf(date.substring(3,5));
         int eventYear = Integer.valueOf(date.substring(6,10));

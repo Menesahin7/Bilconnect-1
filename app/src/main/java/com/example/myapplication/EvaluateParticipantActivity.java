@@ -139,13 +139,13 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
             }
         });
 
-        /* bug var
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(EvaluateParticipantActivity.this,MainActivity.class));
+                startActivity(new Intent(EvaluateParticipantActivity.this,AttendedEventsActivity.class));
             }
-        });*/
+        });
     }
 
 

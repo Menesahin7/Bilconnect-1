@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton btnAddEvent;
 
+    private SearchView searchView;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +54,19 @@ public class MainActivity extends AppCompatActivity {
 
         mFireBaseDataBase = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app");
         myRef = mFireBaseDataBase.getReference();
-
+        searchView = findViewById(R.id.search_bar);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterlist(newText);
+                return false;
+            }
+        });
         events = new ArrayList<>();
         Context c = this;
 
@@ -57,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
-                    System.out.println("5");
                     usr = (User) snapshot.getValue(User.class);
                     try {
                         userss.add(usr);
@@ -71,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     for(int i = 0; i<userss.size(); i++) {
                         if(userss.get(i).getId().equals(FirebaseAuth.getInstance().getUid())) {
-                            System.out.println("6");
                             usr = userss.get(i);
                             eventRecyclerAdapter.setUser(usr);
                             eventRecyclerAdapter.setActivity(activity);
@@ -133,5 +149,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, AddingEventActivity.class));
             }
         });
+    }
+
+    public void filterlist(String newText) {
+        ArrayList<Event> filteredEvents = new ArrayList<>();
+        for(Event e : events)
+        {
+            if(e.getTitle().toLowerCase().contains(newText.toLowerCase()))
+            {
+                filteredEvents.add(e);
+            }
+        }
+
+        if(filteredEvents.isEmpty())
+        {
+            System.out.println("fdsafdas");
+            Toast.makeText(this,"No such event found",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            eventRecyclerAdapter.setFilteredEvent(filteredEvents);
+        }
     }
 }

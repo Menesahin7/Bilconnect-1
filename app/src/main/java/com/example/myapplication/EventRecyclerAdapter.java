@@ -37,6 +37,11 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         }
     }
 
+    public void setFilteredEvent(ArrayList<Event> filteredE)
+    {
+        this.events = filteredE;
+        notifyDataSetChanged();
+    }
     public void setActivity(Activity activity) {
         this.activity = activity;
     }
