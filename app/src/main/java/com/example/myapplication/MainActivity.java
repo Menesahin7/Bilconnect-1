@@ -69,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
         profileMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< Updated upstream
                 startActivity(new Intent(MainActivity.this,AttendedEventsActivity.class));
+=======
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+>>>>>>> Stashed changes
             }
         });
 
