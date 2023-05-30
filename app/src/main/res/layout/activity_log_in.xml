@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".LogInActivity">
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="162dp"
-        android:layout_height="138dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="84dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,7 @@
         android:layout_width="171dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/helvetica"
+        android:fontFamily="@font/sfnsbold"
         android:gravity="center"
         android:text="Log In"
         android:textColor="@color/black"
@@ -35,12 +36,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="337dp"
+        android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:gravity="center"
         android:text="Please sign in to your existing account"
         android:textColor="@color/black"
         android:textSize="18dp"
+        android:fontFamily="@font/sfnsbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -51,7 +53,7 @@
         android:layout_width="350dp"
         android:layout_height="48dp"
         android:layout_marginTop="44dp"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/rounded_corner_az"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -69,7 +71,7 @@
         android:layout_width="350dp"
         android:layout_height="48dp"
         android:layout_marginTop="44dp"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/rounded_corner_az"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawableRight="@drawable/baseline_visibility_off_24"
         android:drawablePadding="10dp"
@@ -90,6 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Email"
+        android:textSize="14sp"
+        android:fontFamily="@font/sfns"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress_loginpage"
         app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress_loginpage" />
@@ -100,6 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Password"
+        android:textSize="14sp"
+        android:fontFamily="@font/sfns"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
@@ -111,6 +117,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Forgot Password"
+        android:fontFamily="@font/sfnsbold"
         android:textColor="@color/app_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -132,18 +139,18 @@
         android:layout_width="174dp"
         android:layout_height="23dp"
         android:layout_marginStart="28dp"
+        android:fontFamily="@font/sfnsbold"
         android:text="Don't have an account?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewSignUp"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewSignUp"
         android:layout_width="77dp"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:text="Sign Up"
         android:textColor="@color/app_color"
+        android:fontFamily="@font/sfnsbold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.118"

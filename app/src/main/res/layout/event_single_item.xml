@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:layout_marginTop="12dp"
-    android:background="@drawable/rounded_corner"
+    android:background="@drawable/rounded_corner_az"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
@@ -14,7 +14,7 @@
         android:textColor="@color/black"
         android:layout_marginLeft="8dp"
         android:padding="8dp"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/rounded_corner_az"
         android:textSize="18sp"
         />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnAttendEvent"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/rounded_corner_az"
         android:padding="12dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical">

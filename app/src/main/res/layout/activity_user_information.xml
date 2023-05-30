@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:orientation="vertical">
         <ImageView
             android:layout_width="150dp"
@@ -18,8 +20,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/sfns"
             android:text="Name and Surname"/>
 
         <EditText
@@ -28,7 +33,7 @@
             android:layout_height="48dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/rounded_corner"
+            android:background="@drawable/rounded_corner_az"
             android:hint="Aziz Yıldırım"
             android:padding="8dp" />
         <TextView
@@ -36,6 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/sfns"
             android:text="Biography"/>
 
         <EditText
@@ -44,7 +52,7 @@
             android:layout_height="150dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/rounded_corner"
+            android:background="@drawable/rounded_corner_az"
             android:gravity="top"
             android:hint="I'm freshman at Bilkent"
             android:padding="12dp" />
