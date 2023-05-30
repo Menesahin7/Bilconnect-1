@@ -28,6 +28,7 @@
         android:layout_marginTop="12dp"
         android:layout_toRightOf="@+id/search_bar"
         android:contentDescription="ProfileButton"
+        android:foregroundGravity="center"
         android:src="@drawable/baseline_person_24" />
 
 

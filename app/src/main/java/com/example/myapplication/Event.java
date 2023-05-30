@@ -88,28 +88,18 @@ public class Event {
         int eventHour = Integer.valueOf(Time.substring(0,2));
         int eventMinute = Integer.valueOf(Time.substring(3,5));
 
-        if(eventYear<currentYear) {
-            this.active = false;
-            return true;
-        }
-        else if(eventMonth<currentMonth) {
-            this.active = false;
-            return true;
-        } else if (eventDay<currentDay) {
-            this.active = false;
-            return true;
-        }
-        else if(eventDay == currentDay && eventHour<currentHour) {
-            this.active = false;
-            return true;
-        }
-        else if(eventDay == currentDay && eventHour == currentHour && eventMinute<currentMinute) {
-            this.active = false;
-            return true;
-        }
-        else {
-            this.active = true;
-            return false;
+        if (currentYear > eventYear) {
+            return true;  // Event has already occurred in a previous year
+        } else if (currentYear == eventYear && currentMonth > eventMonth) {
+            return true;  // Event has already occurred in the same year but a previous month
+        } else if (currentYear == eventYear && currentMonth == eventMonth && currentDay > eventDay) {
+            return true;  // Event has already occurred in the same year and month but a previous day
+        } else if (currentYear == eventYear && currentMonth == eventMonth && currentDay == eventDay && currentHour > eventHour) {
+            return true;  // Event has already occurred on the same day but a previous hour
+        } else if (currentYear == eventYear && currentMonth == eventMonth && currentDay == eventDay && currentHour == eventHour && currentMinute >= eventMinute) {
+            return true;  // Event has already occurred at the exact same time or passed
+        } else {
+            return false;  // Event is still in the future
         }
     }
 
