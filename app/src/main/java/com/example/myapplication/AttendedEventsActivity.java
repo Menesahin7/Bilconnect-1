@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AttendedEventsActivity extends AppCompatActivity {
 
@@ -28,6 +30,8 @@ public class AttendedEventsActivity extends AppCompatActivity {
 
     DatabaseReference reference;
     User usr;
+
+    Activity activity = this;
 
 
     @Override
@@ -69,9 +73,11 @@ public class AttendedEventsActivity extends AppCompatActivity {
                                         }
                                     }
                                 }
+                                Collections.sort(events, Collections.reverseOrder());
                                 recyclerView = findViewById(R.id.recyclerView);
                                 eventRecyclerAdapter = new EventRecyclerAdapter(events);
                                 eventRecyclerAdapter.setUser(usr);
+                                eventRecyclerAdapter.setActivity(activity);
                                 recyclerView.setAdapter(eventRecyclerAdapter);
                                 recyclerView.setLayoutManager(new LinearLayoutManager(c));
                             }

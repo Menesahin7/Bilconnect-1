@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
     ArrayList<Event> events;
     Event event;
     User user;
+    Activity activity;
 
     public EventRecyclerAdapter(ArrayList<Event> events) {
         this.events = events;
@@ -33,6 +35,10 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         if(!(user == null)) {
             this.user = user;
         }
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
     @NonNull
@@ -99,6 +105,9 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
                                 FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users").child(user.getId()).setValue(user);
                                 FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events").child(clickedEvent.getEventId()).setValue(clickedEvent);
                                 Toast.makeText(itemView.getContext(), "Successfull", Toast.LENGTH_SHORT).show();
+                                if(activity != null) {
+                                    activity.recreate();
+                                }
                             }
                         } else if (btnAttendEvent.getText().equals("Evaluate")) {
                             Intent intent = new Intent(itemView.getContext(), EvaluateParticipantActivity.class);
@@ -112,6 +121,9 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
                                 FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users").child(user.getId()).setValue(user);
                                 FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events").child(clickedEvent.getEventId()).setValue(clickedEvent);
                                 Toast.makeText(itemView.getContext(), "Successfull", Toast.LENGTH_SHORT).show();
+                                if(activity != null) {
+                                    activity.recreate();
+                                }
                             }
                         }
                     }

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class Event {
+public class Event implements Comparable<Event>{
     protected String title;
     protected String description;
     protected String location;
@@ -204,6 +204,40 @@ public class Event {
 
     public String getHostUser() {
         return hostId;
+    }
+
+
+    @Override
+    public int compareTo(Event o) {
+
+
+        int eventDay = Integer.valueOf(date.substring(0,2));
+        int eventMonth = Integer.valueOf(date.substring(3,5));
+        int eventYear = Integer.valueOf(date.substring(6,10));
+
+        int eventHour = Integer.valueOf(Time.substring(0,2));
+        int eventMinute = Integer.valueOf(Time.substring(3,5));
+
+        int otherDay = Integer.valueOf(o.getDate().substring(0,2));
+        int otherMonth = Integer.valueOf(o.getDate().substring(3,5));
+        int otherYear = Integer.valueOf(o.getDate().substring(6,10));
+
+        int otherHour = Integer.valueOf(o.getTime().substring(0,2));
+        int otherMinute = Integer.valueOf(o.getTime().substring(3,5));
+
+        if (otherYear > eventYear) {
+            return -1;  // Event has already occurred in a previous year
+        } else if (otherYear == eventYear && otherMonth > eventMonth) {
+            return -1;  // Event has already occurred in the same year but a previous month
+        } else if (otherYear == eventYear && otherMonth == eventMonth && otherDay > eventDay) {
+            return -1;  // Event has already occurred in the same year and month but a previous day
+        } else if (otherYear == eventYear && otherMonth == eventMonth && otherDay == eventDay && otherHour > eventHour) {
+            return -1;  // Event has already occurred on the same day but a previous hour
+        } else if (otherYear == eventYear && otherMonth == eventMonth && otherDay == eventDay && otherHour == eventHour && otherMinute >= eventMinute) {
+            return -1;  // Event has already occurred at the exact same time or passed
+        } else {
+            return 1;  // Event is still in the future
+        }
     }
 }
 

@@ -34,11 +34,11 @@
 
     <TextView
         android:id="@+id/textVievNameSurname"
-        android:layout_width="215dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/name_surname"
-        android:textSize="24dp"
+        android:textSize="28dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextBiography"
         app:layout_constraintEnd_toEndOf="parent"

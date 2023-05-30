@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase mFireBaseDataBase;
     DatabaseReference myRef;
     User usr;
+    Activity activity = this;
     ArrayList<User> userss = new ArrayList<User>();
 
     FloatingActionButton btnAddEvent;
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println("6");
                             usr = userss.get(i);
                             eventRecyclerAdapter.setUser(usr);
+                            eventRecyclerAdapter.setActivity(activity);
                         }
                     }
                 }
@@ -91,14 +97,16 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Event e = dataSnapshot.getValue(Event.class);
-                    if(!e.isFinished() && !e.isFull())
+                    if(!e.isFinished() && !e.isFull() && !e.getUsersIdList().contains(FirebaseAuth.getInstance().getUid()))
                     {
                         events.add(e);
                     }
                 }
+                Collections.sort(events);
                 recyclerView = findViewById(R.id.recyclerView);
                 eventRecyclerAdapter = new EventRecyclerAdapter(events);
                 eventRecyclerAdapter.setUser(usr);
+                eventRecyclerAdapter.setActivity(activity);
                 recyclerView.setAdapter(eventRecyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(c));
             }

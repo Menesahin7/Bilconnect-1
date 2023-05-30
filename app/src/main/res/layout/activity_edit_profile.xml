@@ -57,7 +57,7 @@
         android:layout_width="355dp"
         android:layout_height="48dp"
         android:background="@drawable/rounded_corner"
-        android:gravity="center"
+        android:gravity="center|left"
         android:hint="Name Surname"
         android:paddingLeft="20dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBiography1111"
