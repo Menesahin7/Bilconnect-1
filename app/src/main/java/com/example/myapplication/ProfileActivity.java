@@ -30,7 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView nameS,rating, editProfilebtn;
     EditText biography;
 
-    FirebaseUser currentUser;
+    public static FirebaseUser currentUser;
     FirebaseDatabase db;
     DatabaseReference myRef;
     User usr;
@@ -50,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
         myRef = db.getReference();
+
         nameS = findViewById(R.id.textVievNameSurname);
         biography = findViewById(R.id.editTextBiography);
         rating = findViewById(R.id.textViewRating);
@@ -90,7 +91,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // buraya last attended eventleri listelediğimiz sayfaya yönlendircez
-
+                startActivity(new Intent(ProfileActivity.this,AttendedEventsActivity.class));
             }
         });
 

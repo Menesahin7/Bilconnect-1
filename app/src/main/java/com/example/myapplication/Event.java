@@ -82,8 +82,8 @@ public class Event {
         SimpleDateFormat sdf = new SimpleDateFormat("mm/hh");
         String currentTime = sdf.format(new Date());
 
-        int currentHour = Integer.valueOf(currentTime.substring(0,2));
-        int currentMinute = Integer.valueOf(currentTime.substring(3,5));
+        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = calendar.get(Calendar.MINUTE);
 
         int eventHour = Integer.valueOf(Time.substring(0,2));
         int eventMinute = Integer.valueOf(Time.substring(3,5));

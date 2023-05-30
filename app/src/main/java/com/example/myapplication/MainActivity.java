@@ -47,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Event e = dataSnapshot.getValue(Event.class);
-                    System.out.println(e);
                     if(!e.isFinished() && !e.isFull())
                     {
-                        System.out.println(3);
                         events.add(e);
                     }
                 }
@@ -69,11 +67,7 @@ public class MainActivity extends AppCompatActivity {
         profileMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< Updated upstream
-                startActivity(new Intent(MainActivity.this,AttendedEventsActivity.class));
-=======
                 startActivity(new Intent(MainActivity.this,ProfileActivity.class));
->>>>>>> Stashed changes
             }
         });
 
