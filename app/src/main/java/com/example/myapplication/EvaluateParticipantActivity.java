@@ -38,6 +38,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference mRef;
     Event eventt;
+    String eventId;
     String usersId;
     Event event;
     User userToEvaluate;
@@ -55,6 +56,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
         backButton= findViewById(R.id.floatingActionButtonclose);
         arrAdapter  = new ArrayAdapter<String>(EvaluateParticipantActivity.this,android.R.layout.simple_list_item_1,users);
         listView.setAdapter(arrAdapter);
+        eventId = getIntent().getStringExtra(eventId);
 
         db = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
         mRef = db.getReference();
@@ -68,7 +70,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                     if(eventt.getEventId() != null && !eventt.getEventId().isEmpty())
                     {
                         System.out.println(eventt.getEventId());
-                        if (eventt.getEventId().equals("KHTzjJLt35ZCORNF4EQIhthF4xL20")) {
+                        if (eventt.getEventId().equals(eventId)) {
                                 mRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -38,19 +38,25 @@ public class User {
         this.rating = sum / ratingCount;
     }
 
-    public void attendEvent(String e)
+    public boolean attendEvent(String e)
     {
-        attendedEvents = attendedEvents + e +",";
-        count++;
+        if(!attendedEvents.contains(e)) {
+            attendedEvents = attendedEvents + e +",";
+            count++;
+            return true;
+        }
+        return false;
     }
 
-    public void removeEvent(String e)
+    public boolean removeEvent(String e)
     {
         if(attendedEvents.contains(e))
         {
-            attendedEvents.replace((e + ","), "");
+            attendedEvents = attendedEvents.replace((e + ","), "");
             count--;
+            return true;
         }
+        return false;
     }
 
     protected void setName(String name) {
@@ -81,6 +87,7 @@ public class User {
     public double getRating() {
         return rating;
     }
+
 
     public String getCampus() {return campus; }
 

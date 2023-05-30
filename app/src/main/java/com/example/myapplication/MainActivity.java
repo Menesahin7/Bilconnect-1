@@ -8,9 +8,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton addEvent,profileMain;
     FirebaseDatabase mFireBaseDataBase;
     DatabaseReference myRef;
+    User usr;
+    ArrayList<User> userss = new ArrayList<User>();
 
     FloatingActionButton btnAddEvent;
 
@@ -42,6 +46,46 @@ public class MainActivity extends AppCompatActivity {
 
         events = new ArrayList<>();
         Context c = this;
+
+        myRef.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    System.out.println("5");
+                    usr = (User) snapshot.getValue(User.class);
+                    try {
+                        userss.add(usr);
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                    }
+                }
+
+                try {
+                    for(int i = 0; i<userss.size(); i++) {
+                        if(userss.get(i).getId().equals(FirebaseAuth.getInstance().getUid())) {
+                            System.out.println("6");
+                            usr = userss.get(i);
+                            eventRecyclerAdapter.setUser(usr);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Error occurred while retrieving user data
+                Log.e("firebase", "Error getting data", databaseError.toException());
+            }
+        });
+
         myRef.child("events").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -54,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 recyclerView = findViewById(R.id.recyclerView);
                 eventRecyclerAdapter = new EventRecyclerAdapter(events);
+                eventRecyclerAdapter.setUser(usr);
                 recyclerView.setAdapter(eventRecyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(c));
             }
@@ -63,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
         profileMain = findViewById(R.id.btnProfile);
         profileMain.setOnClickListener(new View.OnClickListener() {
             @Override

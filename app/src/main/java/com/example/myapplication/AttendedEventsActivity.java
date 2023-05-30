@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +27,7 @@ public class AttendedEventsActivity extends AppCompatActivity {
     FirebaseDatabase mFireBaseDataBase;
 
     DatabaseReference reference;
+    User usr;
 
 
     @Override
@@ -38,12 +41,14 @@ public class AttendedEventsActivity extends AppCompatActivity {
         String userEmail =ProfileActivity.currentUser.getEmail();
         //System.out.println(userEmail);
         Context c = this;
+
         reference.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
                     if(userEmail.equals(snapShot.getValue(User.class).getMail()))
                     {
+                        usr = snapShot.getValue(User.class);
                         System.out.println("olsun");
                         String str = snapShot.getValue(User.class).attendedEvents;
                         String[] keys = str.split(",");
@@ -66,6 +71,7 @@ public class AttendedEventsActivity extends AppCompatActivity {
                                 }
                                 recyclerView = findViewById(R.id.recyclerView);
                                 eventRecyclerAdapter = new EventRecyclerAdapter(events);
+                                eventRecyclerAdapter.setUser(usr);
                                 recyclerView.setAdapter(eventRecyclerAdapter);
                                 recyclerView.setLayoutManager(new LinearLayoutManager(c));
                             }

@@ -57,7 +57,7 @@ public class Event {
 
     public void addUser(String uid)
     {
-        if(userCount<quota)
+        if(userCount<quota && !usersIdList.contains(uid))
         {
             usersIdList = usersIdList + uid + ",";
             userCount++;
@@ -134,6 +134,22 @@ public class Event {
 
     public int getQuota() {
         return quota;
+    }
+
+    public void setUsersIdList(String usersIdList) {
+        this.usersIdList = usersIdList;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
+
+    public void setUserCount(int userCount) {
+        this.userCount = userCount;
     }
 
     public void setQuota(int quota) {
