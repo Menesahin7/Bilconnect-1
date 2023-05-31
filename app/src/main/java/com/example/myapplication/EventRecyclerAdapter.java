@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,10 +83,10 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewEventName = itemView.findViewById(R.id.textViewEventName);
-            editTextParticipants = itemView.findViewById(R.id.editTextParticipants);
+            editTextParticipants = itemView.findViewById(R.id.textViewBiography);
             editTextDate = itemView.findViewById(R.id.editTextDate);
             editTextTime = itemView.findViewById(R.id.editTextTime);
-            editTextPlace = itemView.findViewById(R.id.editTextPlace);
+            editTextPlace = itemView.findViewById(R.id.textViewUserRating);
             editTextDesc = itemView.findViewById(R.id.editTextDesc);
             btnAttendEvent = itemView.findViewById(R.id.btnAttendEvent);
 

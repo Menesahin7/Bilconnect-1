@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
     User user;
-    FloatingActionButton backButton;
+    FloatingActionButton backButton, floatingActionButtonUsers;
     Button lastAttended;
     TextView nameS,rating, editProfilebtn;
     EditText biography;
@@ -77,6 +77,17 @@ public class ProfileActivity extends AppCompatActivity {
                 Log.e("firebase", "Error getting data", databaseError.toException());
             }
         });
+
+        floatingActionButtonUsers = findViewById(R.id.floatingActionButtonUsers);
+        floatingActionButtonUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this,UserInfoPage.class));
+            }
+        });
+
+
+
 
         backButton = findViewById(R.id.backButtonProfile);
         lastAttended = findViewById(R.id.buttonLastAttendedEvent);

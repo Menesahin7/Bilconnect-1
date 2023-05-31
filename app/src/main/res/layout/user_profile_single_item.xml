@@ -3,35 +3,26 @@
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:layout_marginTop="12dp"
-    android:background="@drawable/rounded_corner"
+    android:background="@drawable/rounded_corner_az"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/textViewEventName"
+        android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event Name"
+        android:text="Name And Surname"
         android:textColor="@color/black"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         android:padding="8dp"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/rounded_corner_az"
         android:textSize="18sp"
         />
-
-    <Button
-        android:id="@+id/btnAttendEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="12dp"
-        android:layout_alignParentRight="true"
-        android:text="Leave" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewEventName"
+        android:layout_below="@+id/textViewUserName"
         android:background="@drawable/rounded_corner"
         android:padding="12dp"
         android:layout_marginTop="8dp"
@@ -45,16 +36,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Participants:"
+                android:text="Biography:"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/editTextParticipants"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:id="@+id/textViewBiography"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="7/8" />
+                android:minLines="3"
+                android:text="User Biography" />
 
         </LinearLayout>
 
@@ -66,19 +58,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date:"
+                android:text="Campus:"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/editTextDate"
+                android:id="@+id/textViewCampus"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginLeft="8dp"
 
-                android:text="XX/XX/XXXX" />
+                android:text="User Campus" />
 
         </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,68 +82,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Time:"
+                android:text="Rating:"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/editTextTime"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-
-                android:text="15:30" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
+                android:id="@+id/textViewUserRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Place:"
-                android:textColor="@color/black"
-                android:textSize="18sp"/>
-
-            <TextView
-                android:id="@+id/editTextPlace"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
                 android:layout_marginLeft="8dp"
-
-                android:text="Library" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description:"
-                android:textColor="@color/black"
-                android:textSize="18sp"/>
-
-            <TextView
-                android:id="@+id/editTextDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-
-                android:text="Wanna Play For Fun" />
+                android:drawableRight="@drawable/baseline_star_rate_24"
+                android:text="User Rating" />
 
         </LinearLayout>
 
 
 
+        </LinearLayout>
 
-
-    </LinearLayout>
 
 </RelativeLayout>
