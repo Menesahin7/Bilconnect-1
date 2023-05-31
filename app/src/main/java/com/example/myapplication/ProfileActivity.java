@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends AppCompatActivity {
     User user;
     FloatingActionButton backButton, floatingActionButtonUsers;
-    Button lastAttended;
+    Button lastAttended,logoutButon;
     TextView nameS,rating, editProfilebtn;
     EditText biography;
 
@@ -35,10 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
     DatabaseReference myRef;
     User usr;
     private DatabaseReference mDatabase;
-
-
-
-
 
     TextView textViewNameAndSurname;
 
@@ -54,7 +50,14 @@ public class ProfileActivity extends AppCompatActivity {
         nameS = findViewById(R.id.textVievNameSurname);
         biography = findViewById(R.id.editTextBiography);
         rating = findViewById(R.id.textViewRating);
-
+        logoutButon = findViewById(R.id.button2);
+        logoutButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ProfileActivity.this,LogInActivity.class));
+            }
+        });
         myRef.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
