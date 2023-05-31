@@ -26,7 +26,6 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
 
     public EventRecyclerAdapter(ArrayList<Event> events) {
         this.events = events;
-        System.out.println("7");
     }
 
     public void setUser(User user) {

@@ -159,11 +159,18 @@ public class MainActivity extends AppCompatActivity {
             {
                 filteredEvents.add(e);
             }
+            else if(e.getDescription()!=null && e.getDescription().toLowerCase().contains(newText.toLowerCase()))
+            {
+                filteredEvents.add(e);
+            }
+            else if(e.getCampus()!= null && e.getCampus().toLowerCase().contains(newText.toLowerCase()))
+            {
+                filteredEvents.add(e);
+            }
         }
 
         if(filteredEvents.isEmpty())
         {
-            System.out.println("fdsafdas");
             Toast.makeText(this,"No such event found",Toast.LENGTH_SHORT).show();
         }
         else

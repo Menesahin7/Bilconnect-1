@@ -13,23 +13,12 @@
         android:fontFamily="@font/sfns"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="Users Who Attend Your Events"/>
+        android:text="Users Who Attended Your Events"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAdam"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textViewUsers"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </RelativeLayout>

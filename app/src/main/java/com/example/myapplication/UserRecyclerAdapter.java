@@ -22,16 +22,12 @@ import java.util.ArrayList;
 
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.MyViewHolder> {
     ArrayList<User> users;
-    Event event;
     User user;
     Activity activity;
 
     public UserRecyclerAdapter(ArrayList<User> users) {
         this.users = users;
-        System.out.println("7");
     }
-
-
 
 
     public void setActivity(Activity activity) {
@@ -48,6 +44,10 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         user = users.get(position);
+        holder.textViewBiography.setText(users.get(position).getBio());
+        holder.textViewCampus.setText(users.get(position).getCampus());
+        holder.textViewUserName.setText(users.get(position).getName());
+        holder.textViewUserRating.setText(""+users.get(position).getRating());
     }
 
     @Override
@@ -64,13 +64,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             textViewCampus = itemView.findViewById(R.id.textViewCampus);
             textViewBiography = itemView.findViewById(R.id.textViewBiography);
 
-
-
         }
-
-
     }
-
-
 
 }
