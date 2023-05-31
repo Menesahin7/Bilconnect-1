@@ -61,14 +61,11 @@ public class SignUpActivity extends AppCompatActivity {
                         password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_visibility_off_24,0);
                         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                         passwordVisible=false;
-
                     }else{
                         password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_remove_red_eye_24,0);
                         password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                         passwordVisible=true;
-
                     }
-
                     password.setSelection(selection);
                     return true;
                 }
