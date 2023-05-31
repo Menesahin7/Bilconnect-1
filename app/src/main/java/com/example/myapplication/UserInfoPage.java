@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+
+
 public class UserInfoPage extends AppCompatActivity {
     ArrayList<User> userss;
 
@@ -63,10 +65,18 @@ public class UserInfoPage extends AppCompatActivity {
                                     {
                                         us = dataSnapshot.getValue(User.class);
                                         String userKey = dataSnapshot.getKey();
+<<<<<<< Updated upstream
 
                                         if(!userKey.equals(userId))
                                         {
                                             for(int i = 0;i<userIdArr.length;i++)
+=======
+                                        //System.out.println(userKey);
+                                        for(int i = 0;i<userIdArr.length;i++)
+                                        {
+                                            System.out.println(userIdArr[i]);
+                                            if(!userIdArr[i].equals(userId))
+>>>>>>> Stashed changes
                                             {
                                                 if(!userIdArr[i].equals(userId))
                                                 {
@@ -82,7 +92,13 @@ public class UserInfoPage extends AppCompatActivity {
                                                 }
                                             }
                                         }
+<<<<<<< Updated upstream
                                     }
+=======
+
+                                    }
+
+>>>>>>> Stashed changes
                                     recyclerView = findViewById(R.id.recyclerAdam);
                                     userRecyclerAdapter = new UserRecyclerAdapter(userss);
                                     userRecyclerAdapter.setActivity(activity);

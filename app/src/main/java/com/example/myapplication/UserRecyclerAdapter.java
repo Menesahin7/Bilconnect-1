@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.MyViewHolder> {
     ArrayList<User> users;
+
+
     User user;
     Activity activity;
 
