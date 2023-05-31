@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Event e = dataSnapshot.getValue(Event.class);
-                    if(!e.isFinished() && !e.isFull() && !e.getUsersIdList().contains(FirebaseAuth.getInstance().getUid()))
+                    if(!e.isFinished() && !e.isFull() && !e.getUsersIdList().contains(FirebaseAuth.getInstance().getUid()) && e.getUserCount()!=0)
                     {
                         events.add(e);
                     }

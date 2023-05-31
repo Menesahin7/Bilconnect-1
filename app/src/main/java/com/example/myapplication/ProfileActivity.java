@@ -8,10 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.text.DecimalFormat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -70,12 +69,12 @@ public class ProfileActivity extends AppCompatActivity {
                         campusText.setText(usr.getCampus());
                         nameS.setText(usr.getName());
                         biography.setText(usr.getBio());
-                        rating.setText(""+usr.getRating());
+                        DecimalFormat df = new DecimalFormat("##.##");
+                        double getrtg = usr.getRating();
+                        rating.setText(df.format(getrtg));
                     }
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Error occurred while retrieving user data
