@@ -34,7 +34,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:background="@drawable/rounded_corner_az"
-            android:hint="Aziz Yıldırım"
+            android:hint="Name Surname"
             android:padding="8dp" />
         <TextView
             android:layout_width="match_parent"
