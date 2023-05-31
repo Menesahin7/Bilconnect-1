@@ -75,7 +75,6 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Error occurred while retrieving user data
