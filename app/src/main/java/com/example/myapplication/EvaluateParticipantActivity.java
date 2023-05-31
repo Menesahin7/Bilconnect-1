@@ -56,7 +56,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
         backButton= findViewById(R.id.floatingActionButtonclose);
         arrAdapter  = new ArrayAdapter<String>(EvaluateParticipantActivity.this,android.R.layout.simple_list_item_1,users);
         listView.setAdapter(arrAdapter);
-        eventId = getIntent().getStringExtra(eventId);
+        eventId = getIntent().getStringExtra("eventId");
 
         db = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/");
         mRef = db.getReference();
@@ -69,7 +69,7 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                     usersId = eventt.getUsersIdList();
                     if(eventt.getEventId() != null && !eventt.getEventId().isEmpty())
                     {
-                        System.out.println(eventt.getEventId());
+
                         if (eventt.getEventId().equals(eventId)) {
                                 mRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -77,22 +77,18 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                                         for (DataSnapshot snapshot:dataSnapshot.getChildren())
                                         {
                                             String userId = snapshot.getKey();
-                                            System.out.println(userId);
-                                            for(int i = 0; i<eventt.usersIdList.length();i++)
+
+                                            if(eventt.getUsersIdList().contains(userId) && !userId.equals(FirebaseAuth.getInstance().getUid()))
                                             {
-                                                String sUserId = eventt.usersIdList.substring(i,eventt.usersIdList.indexOf(","));
-                                                System.out.println(sUserId);
-                                                if(userId.equals(sUserId) && !userId.equals(FirebaseAuth.getInstance().getUid()))
-                                                {
-                                                    User usr = (User) snapshot.getValue(User.class);
-                                                    String userName = snapshot.child("name").getValue(String.class);
-                                                    users.add(userName);
-                                                    userArray.add(usr);
-                                                    System.out.println(6);
-                                                    arrAdapter.notifyDataSetChanged();
-                                                }
-                                                i = eventt.usersIdList.indexOf(",");
+                                                User usr = (User) snapshot.getValue(User.class);
+                                                String userName = snapshot.child("name").getValue(String.class);
+                                                users.add(userName);
+                                                userArray.add(usr);
+                                                System.out.println(6);
+                                                arrAdapter.notifyDataSetChanged();
                                             }
+
+
                                         }
                                     }
 
@@ -102,7 +98,9 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
                                         Log.e("firebase", "Error getting user data", databaseError.toException());
                                     }
                                 });
+                            break;
                         }
+
                     }
                 }
             }

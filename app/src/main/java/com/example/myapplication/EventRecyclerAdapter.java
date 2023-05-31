@@ -114,6 +114,7 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
                         } else if (btnAttendEvent.getText().equals("Evaluate")) {
                             Intent intent = new Intent(itemView.getContext(), EvaluateParticipantActivity.class);
                             intent.putExtra("eventId", clickedEvent.getEventId());
+                            System.out.println("bu" + clickedEvent.getEventId());
                             itemView.getContext().startActivity(intent);
                         } else {
                             System.out.println("3" + user.getId());
