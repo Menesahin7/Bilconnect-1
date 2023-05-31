@@ -13,6 +13,7 @@ public class User {
     protected int ratingCount;
     protected String bio;
     protected String attendedEvents;
+    protected String evaluationInfo;
 
     public User()
     {
@@ -29,13 +30,21 @@ public class User {
         this.rating = 0;
         this.count = 0;
         this.attendedEvents = "";
+        this.evaluationInfo = "";
     }
-    public void evalRating(double num)
+    public Boolean evalRating(double num, String evaluationInfo)
     {
-        double sum = this.rating*ratingCount;
-        sum += num;
-        this.ratingCount++;
-        this.rating = sum / ratingCount;
+        if(this.evaluationInfo.contains(evaluationInfo)) {
+            return false;
+        }
+        else {
+            double sum = this.rating*ratingCount;
+            sum += num;
+            this.ratingCount++;
+            this.rating = sum / ratingCount;
+            this.evaluationInfo += evaluationInfo + ",";
+            return true;
+        }
     }
 
     public boolean attendEvent(String e)
@@ -64,6 +73,10 @@ public class User {
     }
     protected void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public void setEvaluationInfo(String evaluationInfo) {
+        this.evaluationInfo = evaluationInfo;
     }
 
     protected void setBio(String biography)
@@ -102,6 +115,10 @@ public class User {
     public String toString()
     {
         return getName();
+    }
+
+    public String getEvaluationInfo() {
+        return evaluationInfo;
     }
 }
 

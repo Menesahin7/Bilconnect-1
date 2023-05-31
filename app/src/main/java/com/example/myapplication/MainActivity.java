@@ -125,12 +125,16 @@ public class MainActivity extends AppCompatActivity {
                 eventRecyclerAdapter.setActivity(activity);
                 recyclerView.setAdapter(eventRecyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(c));
+                if(events.isEmpty()) {
+                    Toast.makeText(MainActivity.this,"Currently there aren't any events available. You can start by creating one.",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
 
