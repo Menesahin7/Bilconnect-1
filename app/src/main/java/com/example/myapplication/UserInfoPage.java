@@ -51,30 +51,23 @@ public class UserInfoPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Event e = dataSnapshot.getValue(Event.class);
-                    if(e.getUsersIdList().contains(userId))
-                    {
+                    if (e.getUsersIdList().contains(userId)) {
                         String[] userIdArr = e.getUsersIdList().split(",");
-                        if(userIdArr.length > 1)
-                        {
+                        if (userIdArr.length > 1) {
                             myRef.child("users").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    for (DataSnapshot dataSnapshot : snapshot.getChildren())
-                                    {
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                         us = dataSnapshot.getValue(User.class);
                                         String userKey = dataSnapshot.getKey();
 
-                                        if(!userKey.equals(userId))
-                                        {
-                                            for(int i = 0;i<userIdArr.length;i++)
-                                            {
-                                                if(!userIdArr[i].equals(userId))
-                                                {
+                                        if (!userKey.equals(userId)) {
+                                            for (int i = 0; i < userIdArr.length; i++) {
+                                                if (!userIdArr[i].equals(userId)) {
                                                     boolean cont = userss.contains(us);
                                                     boolean isV = keys.contains(userKey);
                                                     System.out.println(cont);
-                                                    if(!cont && !isV)
-                                                    {
+                                                    if (!cont && !isV) {
                                                         System.out.println(us.getName());
                                                         keys.add(userKey);
                                                         userss.add(us);
@@ -89,7 +82,6 @@ public class UserInfoPage extends AppCompatActivity {
                                     recyclerView.setAdapter(userRecyclerAdapter);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(c));
                                 }
-
 
 
                                 @Override
