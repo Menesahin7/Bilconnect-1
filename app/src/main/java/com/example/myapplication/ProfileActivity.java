@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     User usr;
     private DatabaseReference mDatabase;
 
-    TextView textViewNameAndSurname;
+    TextView textViewNameAndSurname,campusText;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         biography = findViewById(R.id.editTextBiography);
         rating = findViewById(R.id.textViewRating);
         logoutButon = findViewById(R.id.button2);
+        campusText = findViewById(R.id.campusText);
         logoutButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if(snapshot.getValue(User.class).mail.equals(currentUser.getEmail()))
                     {
                         usr = snapshot.getValue(User.class);
+                        campusText.setText(usr.getCampus());
                         nameS.setText(usr.getName());
                         biography.setText(usr.getBio());
                         rating.setText(""+usr.getRating());
