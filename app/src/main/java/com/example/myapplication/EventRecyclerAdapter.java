@@ -67,7 +67,13 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
             holder.editTextTime.setTextColor(Color.RED);
         }
         else if(event.getUsersIdList().contains(FirebaseAuth.getInstance().getUid())){
-            holder.btnAttendEvent.setText("Leave");
+            if(event.getUserCount()==1) {
+                holder.btnAttendEvent.setText("Delete");
+            }
+            else {
+                holder.btnAttendEvent.setText("Leave");
+            }
+
         }
     }
 
@@ -101,7 +107,7 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdap
                         System.out.println(clickedEvent.getTitle());
 
 
-                        if (btnAttendEvent.getText().equals("Leave")) {
+                        if (btnAttendEvent.getText().equals("Leave") || btnAttendEvent.getText().equals("Delete")) {
                             if (user.removeEvent(clickedEvent.getEventId())) {
                                 clickedEvent.removeUser(FirebaseAuth.getInstance().getUid());
                                 FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users").child(user.getId()).setValue(user);
