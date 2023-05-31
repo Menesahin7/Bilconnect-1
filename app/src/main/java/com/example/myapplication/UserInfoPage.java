@@ -41,6 +41,7 @@ public class UserInfoPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String userId = currentUser.getUid();
+        ArrayList<String> keys = new ArrayList<>();
 
         mFireBaseDataBase = FirebaseDatabase.getInstance("https://bilconnect-96cde-default-rtdb.europe-west1.firebasedatabase.app");
         myRef = mFireBaseDataBase.getReference();
@@ -53,7 +54,7 @@ public class UserInfoPage extends AppCompatActivity {
                     if(e.getUsersIdList().contains(userId))
                     {
                         String[] userIdArr = e.getUsersIdList().split(",");
-                        if(userIdArr.length!= 1)
+                        if(userIdArr.length > 1)
                         {
                             myRef.child("users").addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -62,24 +63,25 @@ public class UserInfoPage extends AppCompatActivity {
                                     {
                                         us = dataSnapshot.getValue(User.class);
                                         String userKey = dataSnapshot.getKey();
-                                        //System.out.println(userKey);
 
-                                        for(int i = 0;i<userIdArr.length;i++)
+                                        if(!userKey.equals(userId))
                                         {
-                                            System.out.println(userIdArr[i]);
-                                            if(!userIdArr[i].equals(userId) && userIdArr[i].equals(userKey))
+                                            for(int i = 0;i<userIdArr.length;i++)
                                             {
-                                                if(!userss.contains(us))
+                                                if(!userIdArr[i].equals(userId))
                                                 {
-                                                    userss.add(us);
+                                                    boolean cont = userss.contains(us);
+                                                    boolean isV = keys.contains(userKey);
+                                                    System.out.println(cont);
+                                                    if(!cont && !isV)
+                                                    {
+                                                        System.out.println(us.getName());
+                                                        keys.add(userKey);
+                                                        userss.add(us);
+                                                    }
                                                 }
                                             }
                                         }
-
-                                    }
-                                    for (int i = 0; i<userss.size();i++)
-                                    {
-                                        System.out.println(userss.get(i).getName());
                                     }
                                     recyclerView = findViewById(R.id.recyclerAdam);
                                     userRecyclerAdapter = new UserRecyclerAdapter(userss);
