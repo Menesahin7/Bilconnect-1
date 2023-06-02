@@ -150,8 +150,14 @@ public class EvaluateParticipantActivity extends AppCompatActivity {
     public void evaluate()
     {
         try {
-            userToEvaluate.evalRating(rateValue);
-            mRef.child("users").child(userToEvaluate.getId()).setValue(userToEvaluate);
+            Boolean done = userToEvaluate.evalRating(rateValue, (eventId + (FirebaseAuth.getInstance().getUid())));
+            if(done) {
+                mRef.child("users").child(userToEvaluate.getId()).setValue(userToEvaluate);
+            }
+            else {
+                Toast.makeText(EvaluateParticipantActivity.this, "You have already rated this user in this event",Toast.LENGTH_LONG).show();
+            }
+
         }
         catch (Exception e) {
             Toast.makeText(EvaluateParticipantActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
