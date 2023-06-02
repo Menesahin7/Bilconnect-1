@@ -21,19 +21,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.MyViewHolder> {
-    ArrayList<User> users;
-
-
-    User user;
-    Activity activity;
+    private ArrayList<User> users;
+    private User user;
+    private Activity activity;
 
     public UserRecyclerAdapter(ArrayList<User> users) {
         this.users = users;
     }
 
-
     public void setActivity(Activity activity) {
         this.activity = activity;
+    }
+
+    public void setFilteredUsers(ArrayList<User> filteredU)
+    {
+        this.users = filteredU;
+        notifyDataSetChanged();
     }
 
     @NonNull

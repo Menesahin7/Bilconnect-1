@@ -40,23 +40,23 @@ public class AddingEventActivity extends AppCompatActivity {
     protected FloatingActionButton backButton;
     protected Button createEventButton;
 
-    String campusAct;
-    Calendar calendar;
-    String dateFormat;
-    SimpleDateFormat simpleDateFormat;
-    String currentDate;
-    Date selectedDate;
-    RadioButton main,east;
-    RadioGroup group;
-    FirebaseAuth mAuth;
-    FirebaseDatabase mFireBaseDataBase;
-    DatabaseReference userRef;
-    DatabaseReference myRef;
-    User user;
-    String uid;
-    Event event;
-    User usr;
-    ArrayList<User> userss = new ArrayList<User>();
+    private String campusAct;
+    private Calendar calendar;
+    private String dateFormat;
+    private SimpleDateFormat simpleDateFormat;
+    private String currentDate;
+    private Date selectedDate;
+    private RadioButton main,east;
+    private RadioGroup group;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mFireBaseDataBase;
+    private DatabaseReference userRef;
+    private DatabaseReference myRef;
+    private User user;
+    private String uid;
+    private Event event;
+    private User usr;
+    private ArrayList<User> userss = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -19,10 +19,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class EventRecyclerAdapter extends RecyclerView.Adapter<EventRecyclerAdapter.MyViewHolder> {
-    ArrayList<Event> events;
-    Event event;
-    User user;
-    Activity activity;
+    private ArrayList<Event> events;
+    private Event event;
+    private User user;
+    private Activity activity;
 
     public EventRecyclerAdapter(ArrayList<Event> events) {
         this.events = events;

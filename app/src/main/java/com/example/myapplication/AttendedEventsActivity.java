@@ -26,18 +26,14 @@ import java.util.Collections;
 
 public class AttendedEventsActivity extends AppCompatActivity {
 
-    ArrayList<Event> events;
-    RecyclerView recyclerView;
-    EventRecyclerAdapter eventRecyclerAdapter;
-
-    FirebaseDatabase mFireBaseDataBase;
-
-    DatabaseReference reference;
-    User usr;
-
-    Activity activity = this;
-    FloatingActionButton backButton;
-
+    private ArrayList<Event> events;
+    private RecyclerView recyclerView;
+    private EventRecyclerAdapter eventRecyclerAdapter;
+    private FirebaseDatabase mFireBaseDataBase;
+    private DatabaseReference reference;
+    private User usr;
+    private Activity activity = this;
+    private FloatingActionButton backButton;
 
     @SuppressLint("MissingInflatedId")
     @Override

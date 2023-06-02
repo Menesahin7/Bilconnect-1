@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,17 +22,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserInfoPage extends AppCompatActivity {
-    ArrayList<User> userss;
+    private ArrayList<User> userss;
 
-    FirebaseDatabase mFireBaseDataBase;
-    FirebaseAuth mAuth;
-    DatabaseReference myRef;
+    private FirebaseDatabase mFireBaseDataBase;
+    private FirebaseAuth mAuth;
+    private DatabaseReference myRef;
 
-    Activity activity = this;
-    RecyclerView recyclerView;
-    User us;
-    UserRecyclerAdapter userRecyclerAdapter;
-    SearchView searchView;
+    private Activity activity = this;
+    private RecyclerView recyclerView;
+    private User us;
+    private UserRecyclerAdapter userRecyclerAdapter;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,18 @@ public class UserInfoPage extends AppCompatActivity {
         setContentView(R.layout.activity_user_info_page);
 
         searchView = findViewById(R.id.search_bar);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
-
-
-
-
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterList(s);
+                return false;
+            }
+        });
 
         userss = new ArrayList<>();
         Context c = this;
@@ -91,8 +99,6 @@ public class UserInfoPage extends AppCompatActivity {
                                     recyclerView.setAdapter(userRecyclerAdapter);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(c));
                                 }
-
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -110,6 +116,26 @@ public class UserInfoPage extends AppCompatActivity {
             }
         });
 
+    }
 
+    public void filterList(String text)
+    {
+        ArrayList<User> filteredUsers = new ArrayList<>();
+        for(User u: userss)
+        {
+            if(u.getName().toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredUsers.add(u);
+            }
+        }
+
+        if(filteredUsers.isEmpty())
+        {
+            Toast.makeText(this,"No such user found",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            userRecyclerAdapter.setFilteredUsers(filteredUsers);
+        }
     }
 }

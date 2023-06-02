@@ -30,18 +30,18 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
-     ArrayList<Event> events;
-     RecyclerView recyclerView;
-     EventRecyclerAdapter eventRecyclerAdapter;
+    private ArrayList<Event> events;
+    private RecyclerView recyclerView;
+    private EventRecyclerAdapter eventRecyclerAdapter;
 
-    FloatingActionButton addEvent,profileMain;
-    FirebaseDatabase mFireBaseDataBase;
-    DatabaseReference myRef;
-    User usr;
-    Activity activity = this;
-    ArrayList<User> userss = new ArrayList<User>();
+    private FloatingActionButton addEvent,profileMain;
+    private FirebaseDatabase mFireBaseDataBase;
+    private DatabaseReference myRef;
+    private User usr;
+    private Activity activity = this;
+    private ArrayList<User> userss = new ArrayList<User>();
 
-    FloatingActionButton btnAddEvent;
+    private FloatingActionButton btnAddEvent;
 
     private SearchView searchView;
 

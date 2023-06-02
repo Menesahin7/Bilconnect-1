@@ -22,16 +22,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText editTextTextEmailAddress;
-    EditText editTextTextPassword;
-    EditText editTextTextConfPassword;
+    private EditText editTextTextEmailAddress;
+    private EditText editTextTextPassword;
+    private EditText editTextTextConfPassword;
 
-    Button btnSignUp;
-    TextView btnTextViewLogIn;
-    FirebaseAuth mAuth;
+    private Button btnSignUp;
+    private TextView btnTextViewLogIn;
+    private FirebaseAuth mAuth;
 
-    EditText password;
-    boolean passwordVisible;
+    private EditText password;
+    private boolean passwordVisible;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override

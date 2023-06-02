@@ -28,16 +28,16 @@ import java.util.ArrayList;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    FloatingActionButton backButton;
-    EditText nameSurname;
-    EditText biography;
-    Button saveButton;
-    Button changePassword;
-    FirebaseUser currentUser;
-    FirebaseDatabase db;
-    DatabaseReference myRef;
-    User usr;
-    ArrayList<User> userss = new ArrayList<User>();
+    private FloatingActionButton backButton;
+    private EditText nameSurname;
+    private EditText biography;
+    private Button saveButton;
+    private Button changePassword;
+    private FirebaseUser currentUser;
+    private FirebaseDatabase db;
+    private DatabaseReference myRef;
+    private User usr;
+    private ArrayList<User> userss = new ArrayList<User>();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

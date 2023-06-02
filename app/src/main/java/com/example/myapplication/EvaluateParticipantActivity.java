@@ -28,22 +28,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EvaluateParticipantActivity extends AppCompatActivity {
-    RatingBar eval;
-    Button evaluateUser;
-    FloatingActionButton backButton;
-    ListView listView;
-    float rateValue;
-    ArrayList<Event> events = new ArrayList<Event>();
-    ArrayList<String> users = new ArrayList<String>();
-    FirebaseDatabase db;
-    DatabaseReference mRef;
-    Event eventt;
-    String eventId;
-    String usersId;
-    Event event;
-    User userToEvaluate;
-    ArrayAdapter<String> arrAdapter;
-    ArrayList<User> userArray;
+    private RatingBar eval;
+    private Button evaluateUser;
+    private FloatingActionButton backButton;
+    private ListView listView;
+    private float rateValue;
+    private ArrayList<Event> events = new ArrayList<Event>();
+    private ArrayList<String> users = new ArrayList<String>();
+    private FirebaseDatabase db;
+    private DatabaseReference mRef;
+    private Event eventt;
+    private String eventId;
+    private String usersId;
+    private Event event;
+    private User userToEvaluate;
+    private ArrayAdapter<String> arrAdapter;
+    private ArrayList<User> userArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

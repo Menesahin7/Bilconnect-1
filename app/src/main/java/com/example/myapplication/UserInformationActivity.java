@@ -26,19 +26,19 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class UserInformationActivity extends AppCompatActivity {
-    EditText userName;
-    EditText biography;
-    RadioButton mainCamp;
-    RadioButton eastCamp;
-    RadioGroup campusGroup;
-    Button createUser;
-    FirebaseAuth mAuth;
-    FirebaseDatabase mFireBaseDataBase;
-    DatabaseReference myRef;
-    String email;
-    String password;
-    String campus;
-    User usr;
+    private EditText userName;
+    private EditText biography;
+    private RadioButton mainCamp;
+    private RadioButton eastCamp;
+    private RadioGroup campusGroup;
+    private Button createUser;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mFireBaseDataBase;
+    private DatabaseReference myRef;
+    private String email;
+    private String password;
+    private String campus;
+    private User usr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
