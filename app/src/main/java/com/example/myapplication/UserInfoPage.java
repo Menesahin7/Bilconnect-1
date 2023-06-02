@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.SearchView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,11 +31,19 @@ public class UserInfoPage extends AppCompatActivity {
     RecyclerView recyclerView;
     User us;
     UserRecyclerAdapter userRecyclerAdapter;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_page);
+
+        searchView = findViewById(R.id.search_bar);
+
+
+
+
+
 
         userss = new ArrayList<>();
         Context c = this;
